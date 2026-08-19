@@ -190,7 +190,15 @@ low-end machine rules)
 - **Tasks:** `/alternatives/[slug]` (badges, links, best-alternatives cards, feature comparison table,
   "why choose"), `generateStaticParams`, 404 handling, metadata + JSON-LD
 - **Exit criteria:** all seeded products generate pages; comparison table correct; SEO metadata present
-- **Status:** [ ] pending
+- **Status:** [x] completed 2026-08-19 — `/alternatives/[slug]` on `phase/09-product-detail`:
+  `lib/product-detail.ts` (pure logic + JSON-LD builders, all 115 replaced names
+  resolve to catalog products), 5 server components under `components/product/`
+  (header w/ badges+links, replaces, best-alternatives, comparison, why-choose),
+  static params for all 181 products, segment `not-found.tsx`, contextual
+  `generateMetadata` (title/description/OG). Verified: `tsc` clean, eslint clean,
+  `pnpm test` 49/49 (16 new), `pnpm validate-data` ✓, render smoke test 6/6 with
+  live data (temp files deleted). Full `next build` deferred to user (low-end
+  machine rule). See HANDOFF-09.
 
 ### P10 — Categories + search
 - **Branch:** `phase/10-categories-search` - **Skills:** Core + `seo`, `nextjs`, `frontend-core`
