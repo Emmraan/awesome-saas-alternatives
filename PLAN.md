@@ -176,7 +176,14 @@ low-end machine rules)
 - **Tasks:** full grid, FilterPanel (pricing/hosting/license/difficulty), sorting (stars/name), pagination,
   mobile bottom-sheet filters
 - **Exit criteria:** filters + sort + pagination work; mobile drawer works; build passes
-- **Status:** [ ] pending
+- **Status:** [x] completed 2026-08-19 — `/alternatives` on `phase/08-directory`: server-rendered
+  grid with URL-driven filters (pricing/hosting/license/difficulty), sort (replaces/name/newest/
+  stars), 24-per-page pagination + redirect canonicalization, sticky desktop FilterPanel sidebar,
+  mobile bottom-sheet drawer (dialog semantics, Escape, focus restore, scroll lock). Logic lives in
+  `lib/directory.ts` (pure, tested); thin client wrappers (`DirectoryControls`, `DirectoryPagination`)
+  reuse P6 FilterPanel/Pagination untouched. Verified: `tsc` clean, eslint clean, `pnpm test`
+  33/33 (20 new directory tests), render smoke test 6/6 with live data (temp files deleted).
+  Full `next build` deferred to user (low-end machine rule). See HANDOFF-08.
 
 ### P9 — Product detail + comparison
 - **Branch:** `phase/09-product-detail` - **Skills:** Core + `seo`, `nextjs`, `frontend-craft`
