@@ -151,7 +151,12 @@ low-end machine rules)
 - **Tasks:** SearchBar, ProductCard, AlternativeCard, ProductLogo, PricingBadge, OpenSourceBadge,
   SelfHostedBadge, GitHubStats, CategoryCard, FilterPanel, ComparisonTable, Breadcrumbs, EmptyState, Pagination
 - **Exit criteria:** build pass; components render with real data; no AI-slop patterns
-- **Status:** [ ] pending
+- **Status:** [x] completed 2026-08-19 — 14 components + barrel under `components/ui/`
+  (badges, ProductLogo, GitHubStats, ProductCard, AlternativeCard, CategoryCard, SearchBar,
+  FilterPanel, ComparisonTable, Breadcrumbs, EmptyState, Pagination) + `lib/cn.ts` + `lib/format.ts`.
+  Verified: `tsc --noEmit` clean, eslint clean, `pnpm test` 13/13, render smoke test 12/12 with
+  live data (temp test + throwaway vitest alias config, deleted after). Full `next build` deferred
+  to user (low-end machine rule). See HANDOFF-06.
 
 ### P7 — Homepage
 - **Branch:** `phase/07-homepage` - **Skills:** Core + `frontend-craft`, `minimalist-ui`, `seo`, `frontend-performance`
