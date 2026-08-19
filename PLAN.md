@@ -205,7 +205,20 @@ low-end machine rules)
 - **Tasks:** `/categories`, `/categories/[slug]` (filterable grid), `/search` (client-side over
   name/desc/tags/category/alternatives, keyboard-friendly)
 - **Exit criteria:** "vercel", "self hosted analytics", "zapier alternative" queries return correct results
-- **Status:** [ ] pending
+- **Status:** [x] completed 2026-08-19 — on `phase/10-categories-search`: `lib/search.ts`
+  (tokenize + stopwords incl. "alternative(s)", per-field index, AND-semantics
+  relevance: replaces>name>category>tag>tagline>description) and `lib/categories.ts`
+  (`getCategoryGroups` full hierarchy + counts); `/categories` index (grouped by
+  top-level with child CategoryCards), `/categories/[slug]` filterable grid
+  (reuses P8 directory machinery via a new backward-compatible `basePath` on
+  `buildDirectoryUrl`/`DirectoryControls`/`DirectoryPagination`; static params
+  for all 58 slugs, segment not-found), `/search` (static page + client
+  `SearchResults` under Suspense: live relevance-ranked filtering, URL-driven,
+  keyboard-friendly). `SearchBar` gained optional controlled `value`/`onChange`.
+  Verified: `tsc` clean, eslint clean on all 13 files, `pnpm test` 63/63
+  (10 search + 4 categories new, incl. all three exit-criteria queries),
+  `pnpm validate-data` ✓ 181, render smoke test 6/6 (temp files deleted).
+  Full `next build` deferred to user (low-end machine rule). See HANDOFF-10.
 
 ### P11 — Contribute page + SEO pass
 - **Branch:** `phase/11-contribute-seo` - **Skills:** Core + `seo`, `nextjs`, `markdown-for-agents`

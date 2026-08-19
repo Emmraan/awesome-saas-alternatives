@@ -75,7 +75,10 @@ export function parseDirectoryState(params: SearchParams): DirectoryState {
   };
 }
 
-export function buildDirectoryUrl(state: DirectoryState): string {
+export function buildDirectoryUrl(
+  state: DirectoryState,
+  basePath = "/alternatives",
+): string {
   const params = new URLSearchParams();
   if (state.pricing.length > 0) params.set("pricing", state.pricing.join(","));
   if (state.difficulty.length > 0)
@@ -86,7 +89,7 @@ export function buildDirectoryUrl(state: DirectoryState): string {
   if (state.page > 1) params.set("page", String(state.page));
 
   const query = params.toString();
-  return query ? `/alternatives?${query}` : "/alternatives";
+  return query ? `${basePath}?${query}` : basePath;
 }
 
 export function filterProducts(

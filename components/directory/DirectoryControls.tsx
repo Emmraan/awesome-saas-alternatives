@@ -21,6 +21,7 @@ export function DirectoryControls({
   activeCount,
   totalResults,
   showStarsSort,
+  basePath = "/alternatives",
   children,
 }: {
   state: DirectoryState;
@@ -28,6 +29,7 @@ export function DirectoryControls({
   activeCount: number;
   totalResults: number;
   showStarsSort: boolean;
+  basePath?: string;
   children: ReactNode;
 }) {
   const router = useRouter();
@@ -55,7 +57,7 @@ export function DirectoryControls({
   };
 
   const go = (next: DirectoryState) => {
-    router.replace(buildDirectoryUrl(next), { scroll: false });
+    router.replace(buildDirectoryUrl(next, basePath), { scroll: false });
   };
 
   const handleSort = (value: string) => {

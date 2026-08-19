@@ -7,9 +7,11 @@ import { buildDirectoryUrl, type DirectoryState } from "@/lib/directory";
 export function DirectoryPagination({
   state,
   totalPages,
+  basePath = "/alternatives",
 }: {
   state: DirectoryState;
   totalPages: number;
+  basePath?: string;
 }) {
   const router = useRouter();
 
@@ -18,7 +20,7 @@ export function DirectoryPagination({
       page={state.page}
       totalPages={totalPages}
       onPageChange={(page) =>
-        router.push(buildDirectoryUrl({ ...state, page }))
+        router.push(buildDirectoryUrl({ ...state, page }, basePath))
       }
     />
   );

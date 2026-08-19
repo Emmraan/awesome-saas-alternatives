@@ -5,23 +5,34 @@ import { Search, X } from "lucide-react";
 
 export function SearchBar({
   defaultValue = "",
+  value,
   placeholder = "Search tools, categories, alternatives…",
   onSubmit,
+  onChange,
   autoFocus = false,
 }: {
   defaultValue?: string;
+  value?: string;
   placeholder?: string;
   onSubmit: (query: string) => void;
+  onChange?: (value: string) => void;
   autoFocus?: boolean;
 }) {
-  const [value, setValue] = useState(defaultValue);
+  const [internalValue, setInternalValue] = useState(defaultValue);
+  const isControlled = value !== undefined;
+  const current = isControlled ? value : internalValue;
+
+  const updateValue = (next: string) => {
+    if (!isControlled) setInternalValue(next);
+    onChange?.(next);
+  };
 
   return (
     <form
       role="search"
       onSubmit={(event) => {
         event.preventDefault();
-        onSubmit(value.trim());
+        onSubmit(current.trim());
       }}
       className="relative"
     >
@@ -36,16 +47,16 @@ export function SearchBar({
       <input
         id="global-search"
         type="search"
-        value={value}
-        onChange={(event) => setValue(event.target.value)}
+        value={current}
+        onChange={(event) => updateValue(event.target.value)}
         placeholder={placeholder}
         autoFocus={autoFocus}
         className="h-11 w-full rounded-md border border-input bg-background pl-9 pr-9 text-sm text-foreground shadow-none transition-colors placeholder:text-muted-foreground [&::-webkit-search-cancel-button]:appearance-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
       />
-      {value.length > 0 && (
+      {current.length > 0 && (
         <button
           type="button"
-          onClick={() => setValue("")}
+          onClick={() => updateValue("")}
           aria-label="Clear search"
           className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded p-1 text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
         >
