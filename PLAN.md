@@ -44,7 +44,7 @@ main  <-- phase/00 -- merge -- phase/01 -- merge -- ... -- phase/15 -- merge
 
 | Files | Owner phase |
 |---|---|
-| `AGENTS.md`, `CLAUDE.md`, `PLAN.md`, `LICENSE`, `.gitignore`, `.editorconfig`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `CHANGELOG.md`, `.nvmrc`, `.vscode/settings.json`, `.agents/`, `.claude/`, `skills-lock.json` | P0 |
+| `AGENTS.md`, `CLAUDE.md`, `PLAN.md`, `LICENSE`, `.gitignore`, `.editorconfig`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `CHANGELOG.md`, `.nvmrc`, `.vscode/settings.json`, `.agents/`, `.claude/`, `skills-lock.json`, `docs/reference/product-source-list.md` | P0 |
 | `package.json`, `pnpm-lock.yaml`, `next.config.*`, `tsconfig.json`, `app/layout.tsx`, `app/globals.css`, `components/theme*` | P1 |
 | `lib/types.ts`, `lib/data.ts`, `data/categories.json`, `data/features.json`, `scripts/validate-data.ts`, `data/products.json` (placeholder) | P2 |
 | `data/products.json` (batches) | P3-P5 |
@@ -130,10 +130,14 @@ low-end machine rules)
 ### P3-P5 — Product data batches (~170 total)
 - **Branches:** `phase/03-data-products-a`, `phase/04-data-products-b`, `phase/05-data-products-c`
 - **Skills:** Core + `code-documenter`
+- **Source:** `docs/reference/product-source-list.md` (canonical table — read THIS, not the ChatGPT
+  conversation; it is the single source of truth for all 131 rows + ~60 unique alternatives)
 - **Batches:** P3: Infrastructure/Backend/Auth/Storage/Analytics/Monitoring - P4: Automation/Communication/
   Email/Git-CI - P5: Design/Productivity/PM/Internal/AI/Security/Billing-CRM
 - **Exit criteria:** `validate-data` zero errors; all alternative refs resolve; ~170 products total
-- **Status:** [ ] [ ] [ ] pending
+- **Status:** [x] P3 completed 2026-08-19 — 78 products (51 paid + 27 alternatives) on
+  `phase/03-data-products-a`: Infra/DB/Auth/Storage/Analytics/Monitoring; `validate-data` ✓ 78
+  products, typecheck clean, 13/13 tests (see HANDOFF-03). [ ] P4 [ ] P5 pending
 
 ### P6 — Core UI components
 - **Branch:** `phase/06-core-components` - **Skills:** Core + `frontend-craft`, `design-taste-frontend`, `minimalist-ui`, `react`, `tailwind-css`

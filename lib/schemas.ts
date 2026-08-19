@@ -67,7 +67,7 @@ export const productSchema = z
     pricing: pricingModelSchema,
     difficulty: difficultySchema,
     categories: z.array(slugSchema).min(1),
-    replaces: z.array(z.string().min(1)).min(1),
+    replaces: z.array(z.string().min(1)),
     features: z.array(slugSchema),
     tags: z.array(z.string().min(1)),
     github: githubMetadataSchema.nullable(),

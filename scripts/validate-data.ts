@@ -116,6 +116,19 @@ function validateProducts(
       }
     }
   });
+  const productNames = new Set(
+    (result.products ?? []).map((p) => p.name.toLowerCase()),
+  );
+  for (const product of result.products ?? []) {
+    for (const r of product.replaces) {
+      if (!productNames.has(r.toLowerCase())) {
+        result.ok = false;
+        result.errors.push(
+          `products.json: "${product.slug}" replaces unknown product "${r}"`,
+        );
+      }
+    }
+  }
   return result;
 }
 

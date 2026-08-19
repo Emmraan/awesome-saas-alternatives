@@ -80,21 +80,40 @@ describe("feature loaders", () => {
 });
 
 describe("product loaders", () => {
-  it("loads products as an empty placeholder array for P2", () => {
+  it("loads a non-empty product list with unique slugs", () => {
     const products = getProducts();
-    expect(Array.isArray(products)).toBe(true);
-    expect(products.length).toBe(0);
+    expect(products.length).toBeGreaterThan(0);
+    const slugs = products.map((p) => p.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
   });
 
-  it("getProduct and getProductSlugs handle the empty set safely", () => {
-    expect(getProductSlugs()).toEqual([]);
-    expect(getProduct("anything")).toBeUndefined();
+  it("getProduct and getProductSlugs mirror the product list", () => {
+    const products = getProducts();
+    expect(getProductSlugs()).toEqual(products.map((p) => p.slug));
+    const first = products[0];
+    expect(getProduct(first.slug)?.slug).toBe(first.slug);
+    expect(getProduct("does-not-exist")).toBeUndefined();
   });
 
-  it("category/alternative/search helpers return empty arrays", () => {
-    expect(getProductsByCategory("analytics")).toEqual([]);
+  it("getProductsByCategory returns products incl. descendant categories", () => {
+    const hosting = getProductsByCategory("cloud-hosting");
+    expect(hosting.length).toBeGreaterThan(0);
+    const analytics = getProductsByCategory("analytics");
+    expect(analytics.length).toBeGreaterThan(0);
+    expect(getProductsByCategory("does-not-exist")).toEqual([]);
+  });
+
+  it("getProductsByAlternative resolves free alternatives for a paid SaaS", () => {
+    const forVercel = getProductsByAlternative("vercel");
+    expect(forVercel.length).toBeGreaterThan(0);
+    expect(forVercel.some((p) => p.slug === "coolify")).toBe(true);
     expect(getProductsByAlternative("zapier")).toEqual([]);
-    expect(searchProducts("vercel")).toEqual([]);
-    expect(searchProducts("")).toEqual([]);
+  });
+
+  it("searchProducts matches name, replaces and tags case-insensitively", () => {
+    expect(searchProducts("vercel").length).toBeGreaterThan(0);
+    expect(searchProducts("sentry").length).toBeGreaterThan(0);
+    expect(searchProducts("")).toEqual(getProducts());
+    expect(searchProducts("nothing-matches-xyz")).toEqual([]);
   });
 });
