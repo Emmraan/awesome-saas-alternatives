@@ -163,7 +163,13 @@ low-end machine rules)
 - **Tasks:** Hero + tagline, large search bar, trending products, category grid, popular SaaS->alternatives,
   badge explainer section, contribute CTA
 - **Exit criteria:** homepage renders with live data; `generateMetadata` set; dark mode correct; LCP reasonable
-- **Status:** [ ] pending
+- **Status:** [x] completed 2026-08-19 — homepage composed of 6 server-rendered sections on
+  `phase/07-homepage` (Hero + large SearchBar + stats, SwappableSaaS, TopAlternatives,
+  CategoryGrid, BadgeExplainer, ContributeCta) plus site chrome (`SiteHeader`, `SiteFooter`,
+  `ThemeToggle`) wired into the root layout; swapped Inter→Geist/Geist Mono (HANDOFF-06 open
+  issue, P1-owned files changed with approval). Verified: `tsc` clean, eslint clean,
+  `pnpm test` 13/13, render smoke test 8/8 with live data (temp files deleted). Full
+  `next build` deferred to user (low-end machine rule). See HANDOFF-07.
 
 ### P8 — Directory page (`/alternatives`)
 - **Branch:** `phase/08-directory` - **Skills:** Core + `frontend-core`, `frontend-craft`, `typescript`
