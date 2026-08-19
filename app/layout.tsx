@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import { ThemeProvider } from "next-themes";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -41,12 +42,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <a
+          <Link
             href="#main"
             className="sr-only z-50 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:outline-2 focus:outline-offset-2 focus:outline-ring"
           >
             Skip to content
-          </a>
+          </Link>
           <SiteHeader />
           <main id="main" className="flex-1">
             {children}
