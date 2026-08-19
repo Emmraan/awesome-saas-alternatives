@@ -107,7 +107,10 @@ describe("product loaders", () => {
     const forVercel = getProductsByAlternative("vercel");
     expect(forVercel.length).toBeGreaterThan(0);
     expect(forVercel.some((p) => p.slug === "coolify")).toBe(true);
-    expect(getProductsByAlternative("zapier")).toEqual([]);
+    const forZapier = getProductsByAlternative("zapier");
+    expect(forZapier.some((p) => p.slug === "n8n")).toBe(true);
+    const forZendesk = getProductsByAlternative("zendesk");
+    expect(forZendesk.map((p) => p.slug).sort()).toEqual(["freescout", "zammad"]);
   });
 
   it("searchProducts matches name, replaces and tags case-insensitively", () => {

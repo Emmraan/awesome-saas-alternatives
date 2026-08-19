@@ -137,7 +137,11 @@ low-end machine rules)
 - **Exit criteria:** `validate-data` zero errors; all alternative refs resolve; ~170 products total
 - **Status:** [x] P3 completed 2026-08-19 — 78 products (51 paid + 27 alternatives) on
   `phase/03-data-products-a`: Infra/DB/Auth/Storage/Analytics/Monitoring; `validate-data` ✓ 78
-  products, typecheck clean, 13/13 tests (see HANDOFF-03). [ ] P4 [ ] P5 pending
+  products, typecheck clean, 13/13 tests (see HANDOFF-03).
+  [x] P4 completed 2026-08-19 — 40 products (29 paid + 11 alternatives) on
+  `phase/04-data-products-b`: Automation/Communication/Email/Git-CI; `validate-data` ✓ 118 products
+  (58 cats / 15 features), typecheck clean, 13/13 tests (see HANDOFF-04).
+  [ ] P5 pending
 
 ### P6 — Core UI components
 - **Branch:** `phase/06-core-components` - **Skills:** Core + `frontend-craft`, `design-taste-frontend`, `minimalist-ui`, `react`, `tailwind-css`
