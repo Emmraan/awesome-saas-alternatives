@@ -17,12 +17,14 @@ import { DirectoryPagination } from "@/components/directory/DirectoryPagination"
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Alternatives directory",
   description:
     "Browse the full catalog of open-source, free and self-hosted alternatives to popular SaaS — filter by pricing, hosting, license and difficulty.",
-};
+  path: "/alternatives",
+});
 
 export default async function AlternativesPage({
   searchParams,

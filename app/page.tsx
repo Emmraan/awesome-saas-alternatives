@@ -15,12 +15,14 @@ import { TopAlternatives } from "@/components/home/TopAlternatives";
 import { CategoryGrid } from "@/components/home/CategoryGrid";
 import { BadgeExplainer } from "@/components/home/BadgeExplainer";
 import { ContributeCta } from "@/components/home/ContributeCta";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Open-Source Alternatives to the SaaS You Already Use",
   description:
     "Discover 180+ open-source, free and self-hosted alternatives to popular SaaS like Vercel, Zapier and Notion — and cut your stack's cost without changing your workflow.",
-};
+  path: "/",
+});
 
 const POPULAR_QUERIES = ["vercel", "zapier", "notion", "analytics"];
 

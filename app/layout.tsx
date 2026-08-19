@@ -4,6 +4,12 @@ import Link from "next/link";
 import { ThemeProvider } from "next-themes";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import {
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  buildWebSiteJsonLd,
+  getSiteUrl,
+} from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,14 +22,26 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const siteUrl = getSiteUrl();
+
 export const metadata: Metadata = {
+  metadataBase: siteUrl ? new URL(siteUrl) : undefined,
   title: {
     default:
       "SaaS Alternatives — Open-source & free alternatives to popular SaaS",
     template: "%s · SaaS Alternatives",
   },
-  description:
-    "Find 180+ open-source, free and self-hosted alternatives to popular SaaS like Vercel, Zapier and Notion.",
+  description: SITE_DESCRIPTION,
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    siteName: SITE_NAME,
+    locale: "en_US",
+    type: "website",
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function RootLayout({
@@ -54,6 +72,12 @@ export default function RootLayout({
           </main>
           <SiteFooter />
         </ThemeProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(buildWebSiteJsonLd()),
+          }}
+        />
       </body>
     </html>
   );

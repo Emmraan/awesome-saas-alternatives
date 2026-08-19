@@ -3,12 +3,14 @@ import Link from "next/link";
 import { getCategoryGroups } from "@/lib/categories";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { CategoryCard } from "@/components/ui/CategoryCard";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Browse categories",
   description:
     "Explore every category in the directory — hosting, analytics, email, AI, project management and more — each with free, open-source and self-hosted alternatives.",
-};
+  path: "/categories",
+});
 
 export default function CategoriesPage() {
   const groups = getCategoryGroups();

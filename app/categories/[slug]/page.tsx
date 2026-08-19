@@ -24,6 +24,7 @@ import { DirectoryPagination } from "@/components/directory/DirectoryPagination"
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return getCategorySlugs().map((slug) => ({ slug }));
@@ -38,15 +39,11 @@ export async function generateMetadata({
   const category = getCategory(slug);
   if (!category) return {};
 
-  return {
+  return pageMetadata({
     title: `${category.name} — open-source alternatives`,
     description: `Free, open-source and self-hosted ${category.name.toLowerCase()} alternatives from the directory — ${category.description}`,
-    openGraph: {
-      title: `${category.name} — open-source alternatives`,
-      description: category.description,
-      type: "website",
-    },
-  };
+    path: `/categories/${category.slug}`,
+  });
 }
 
 export default async function CategoryPage({

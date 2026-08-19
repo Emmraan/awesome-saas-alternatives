@@ -4,12 +4,14 @@ import { getCategories, getProducts } from "@/lib/data";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { SearchBar } from "@/components/ui/SearchBar";
 import { SearchResults } from "@/components/search/SearchResults";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Search alternatives",
   description:
     "Search the catalog of open-source, free and self-hosted alternatives by tool name, category or the SaaS you want to replace.",
-};
+  path: "/search",
+});
 
 export default function SearchPage() {
   const products = getProducts();

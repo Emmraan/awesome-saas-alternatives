@@ -1,4 +1,5 @@
 import type { Category, Product } from "./types";
+import { getAbsoluteUrl } from "./seo";
 
 export interface ProductFact {
   label: string;
@@ -120,18 +121,23 @@ export function buildBreadcrumbJsonLd(
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "/" },
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: getAbsoluteUrl("/"),
+      },
       {
         "@type": "ListItem",
         position: 2,
         name: "Alternatives",
-        item: "/alternatives",
+        item: getAbsoluteUrl("/alternatives"),
       },
       {
         "@type": "ListItem",
         position: 3,
         name: product.name,
-        item: `/alternatives/${product.slug}`,
+        item: getAbsoluteUrl(`/alternatives/${product.slug}`),
       },
     ],
   };

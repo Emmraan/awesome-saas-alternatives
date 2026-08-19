@@ -225,7 +225,19 @@ low-end machine rules)
 - **Tasks:** `/contribute` (GitHub contribution flow), `sitemap.ts`, `robots.ts`, `llms.txt`,
   metadata polish, canonical/OG everywhere
 - **Exit criteria:** sitemap valid; robots correct; metadata on every dynamic page; no thin/duplicate SEO pages
-- **Status:** [ ] pending
+- **Status:** [x] completed 2026-08-19 — on `phase/11-contribute-seo`: `lib/seo.ts`
+  (env-driven `NEXT_PUBLIC_SITE_URL`, absolute URL helpers, `pageMetadata()`,
+  WebSite JSON-LD, GitHub repo/data-file URLs), `app/sitemap.ts` (5 static +
+  58 category + 181 product pages, hard-error without env), `app/robots.ts`,
+  `app/llms.txt/route.ts` (generated spec-shaped text index), `/contribute`
+  (4-step flow, full schema docs, guidelines, CTAs), `app/opengraph-image.tsx`,
+  root layout `metadataBase` + site OG/robots + WebSite JSON-LD, canonical + OG
+  via `pageMetadata()` on every page, absolute breadcrumb JSON-LD items.
+  Verified: `tsc` clean, eslint 0/0 on all 15 files, `pnpm test` 73/73 (10 new
+  seo tests), `pnpm validate-data` ✓ 181, render smoke test 6/6 (temp files
+  deleted). `.env.local` (gitignored) created with `NEXT_PUBLIC_SITE_URL`;
+  `.env.example` deferred to P13. Full `next build` deferred to user (low-end
+  machine rule) — must run with `.env.local` present. See HANDOFF-11.
 
 ### P12 — Tests + quality gate
 - **Branch:** `phase/12-tests` - **Skills:** Core (testing-heavy)

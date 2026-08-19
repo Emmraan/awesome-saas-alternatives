@@ -9,6 +9,7 @@ import {
   getWhyChooseFacts,
 } from "@/lib/product-detail";
 import { ProductDetail } from "@/components/product/ProductDetail";
+import { pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return getProductSlugs().map((slug) => ({ slug }));
@@ -53,11 +54,11 @@ export async function generateMetadata({
           }.`
         : product.tagline;
 
-  return {
+  return pageMetadata({
     title,
     description,
-    openGraph: { title, description, type: "website" },
-  };
+    path: `/alternatives/${product.slug}`,
+  });
 }
 
 export default async function ProductPage({
