@@ -108,7 +108,9 @@ low-end machine rules)
   base `layout.tsx`, `globals.css` design tokens (monochrome + green/blue accent), dark-mode base.
   **User runs `pnpm install` after this phase.**
 - **Exit criteria:** package.json + configs valid; build/lint verified by user post-install
-- **Status:** [ ] pending
+- **Status:** [x] completed 2026-08-19 — scaffold + design tokens on `phase/01-scaffold`;
+  user verified `pnpm install`, `pnpm lint`, `pnpm typecheck`, `pnpm build` all pass
+  (see HANDOFF-01; eslint pinned to v9 pending upstream v10 compat).
 
 ### P2 — Data layer (types + loaders + validation)
 - **Branch:** `phase/02-data-layer` - **Skills:** Core + `typescript`, `frontend-core`
