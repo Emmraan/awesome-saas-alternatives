@@ -1,0 +1,240 @@
+# PLAN — awesome-saas-alternatives
+
+> **Live tracker + master plan.** Every phase is a branch, a new session, and a deterministic exit criterion.
+> Update this file at the end of every phase: mark `[x]`, add completion date + evidence.
+
+## What we're building
+
+**SaaS Alternatives** — a developer-focused, data-driven directory/discovery site that helps users find
+free, open-source, self-hosted and lower-cost alternatives to popular paid SaaS.
+
+- Tagline: *"Find open-source & free alternatives to the SaaS you already use."*
+- Repo: `awesome-saas-alternatives` (public OSS, MIT)
+- Deploy: Vercel (static, JSON-data-driven, **no external DB**)
+- Data: full 130-row table (~170 products) encoded in `data/*.json` — GitHub is the CMS
+
+## Non-negotiable global rules
+
+1. **Research first, always.** Before ANY phase/task/fix: web-fetch/reference check -> find & load the
+   right skill via `using-agent-skills` -> plan -> only then code. Never implement blindly.
+2. **Package manager:** `pnpm`. Agent writes all deps into `package.json`; **the user runs install
+   commands**. Agent never runs installs/builds that take minutes without user's go-ahead (low-end
+   machine rule).
+3. **Fast dev:** lint/typecheck/build/test run **only on new/modified files** (lint-staged,
+   `tsc incremental`, vitest `--changed`). Never the full suite on every change.
+4. **Git:** branch-per-phase `phase/NN-name`, **squash merge** to `main`, one commit per phase.
+   Errors are fixed inside the same phase branch, never after merge.
+5. **No fabrication:** GitHub stars/license/release metadata must be null unless fetched from GitHub API.
+6. **Agent config files are committed:** `.agents/`, `.claude/`, `skills-lock.json` stay in the repo.
+
+## Git strategy
+
+```
+main  <-- phase/00 -- merge -- phase/01 -- merge -- ... -- phase/15 -- merge
+            | branch        | branch
+            `- session 1    `- session 2    `- ... (each phase = new session)
+```
+
+- Branch naming: `phase/NN-name`. Merge order = numeric order.
+- Each branch is cut from the latest `main` AFTER the previous merge -> conflict-free.
+- Merge: `git merge --squash phase/NN-name` (clean linear history).
+- Phase incomplete -> no merge. Bug -> fix in the same branch, re-verify, then merge.
+
+## File ownership map (conflict avoidance)
+
+| Files | Owner phase |
+|---|---|
+| `AGENTS.md`, `CLAUDE.md`, `PLAN.md`, `LICENSE`, `.gitignore`, `.editorconfig`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `CHANGELOG.md`, `.nvmrc`, `.vscode/settings.json`, `.agents/`, `.claude/`, `skills-lock.json` | P0 |
+| `package.json`, `pnpm-lock.yaml`, `next.config.*`, `tsconfig.json`, `app/layout.tsx`, `app/globals.css`, `components/theme*` | P1 |
+| `lib/types.ts`, `lib/data.ts`, `data/categories.json`, `data/features.json`, `scripts/validate-data.ts`, `data/products.json` (placeholder) | P2 |
+| `data/products.json` (batches) | P3-P5 |
+| `components/ui/*` (SearchBar, Cards, Badges, GitHubStats, CategoryCard, FilterPanel, ComparisonTable, Breadcrumbs, EmptyState, Pagination) | P6 |
+| `app/page.tsx` + homepage components | P7 |
+| `app/alternatives/page.tsx` + `FilterPanel` | P8 |
+| `app/alternatives/[slug]/` + `ComparisonTable` | P9 |
+| `app/categories/**`, `app/search/` | P10 |
+| `app/contribute/`, `app/sitemap.ts`, `app/robots.ts`, `lib/seo.ts`, `llms.txt` | P11 |
+| `tests/**`, vitest config | P12 |
+| `.github/workflows/`, `scripts/sync-github.ts`, `CONTRIBUTING.md`, `.env.example`, `release.config.mjs` | P13 |
+| `README.md`, `docs/**` | P14 |
+| `AGENTIC_BUILD_GUIDE.md` | P15 |
+
+## Skill load map
+
+**Always on (Core Kit):** `loop-orchestrator` - `using-agent-skills` - `planning-and-task-breakdown` -
+`incremental-implementation` - `testing` - `test-master` - `code-reviewer` - `code-simplification` -
+`version-control` - `sdlc-workflow` - `forward-deployed-engineer` - `technical-writer`
+
+**Fast-dev/base (all phases):** `repository-foundation-scaffold` (incremental tsc, lint-staged,
+low-end machine rules)
+
+**Design base (P6-P11):** `design-taste-frontend` + `minimalist-ui` — UI must never look AI-generated
+(anti-slop).
+
+| Phase | Branch | Extra skills |
+|---|---|---|
+| P0 | `phase/00-repo-foundation` | `open-source-project-maintainer` |
+| P1 | `phase/01-scaffold` | `nextjs`, `typescript`, `tailwind-css`, `react`, `design-taste-frontend` |
+| P2 | `phase/02-data-layer` | `typescript`, `frontend-core` |
+| P3-P5 | `phase/03/04/05-data-products-*` | `code-documenter` |
+| P6 | `phase/06-core-components` | `frontend-craft`, `design-taste-frontend`, `minimalist-ui`, `react`, `tailwind-css` |
+| P7 | `phase/07-homepage` | `frontend-craft`, `minimalist-ui`, `seo`, `frontend-performance` |
+| P8 | `phase/08-directory` | `frontend-core`, `frontend-craft`, `typescript` |
+| P9 | `phase/09-product-detail` | `seo`, `nextjs`, `frontend-craft` |
+| P10 | `phase/10-categories-search` | `seo`, `nextjs`, `frontend-core` |
+| P11 | `phase/11-contribute-seo` | `seo`, `nextjs`, `markdown-for-agents` |
+| P12 | `phase/12-tests` | `testing`, `test-master`, `code-reviewer` |
+| P13 | `phase/13-sync-ci` | `github-actions-engineering`, `open-source-project-maintainer` |
+| P14 | `phase/14-docs-release` | `technical-writer`, `code-documenter`, `code-reviewer`, `code-simplification` |
+| P15 | `phase/15-agentic-build-guide` | `technical-writer` |
+
+## Phase tracker
+
+### P0 — Repo foundation
+- **Branch:** `phase/00-repo-foundation` - **Skills:** Core + `open-source-project-maintainer` + `repository-foundation-scaffold`
+- **Tasks:** `git init`, MIT `LICENSE`, `.gitignore`, `.editorconfig`, `AGENTS.md`, `CLAUDE.md`,
+  `PLAN.md` (this file), `CHANGELOG.md` (placeholder), `CODE_OF_CONDUCT.md`, `SECURITY.md`,
+  `.nvmrc`, `.vscode/settings.json` (watcher excludes + incremental), commit `.agents/ .claude/ skills-lock.json`
+- **Exit criteria:** all files exist + valid; initial commit on `main`; git clean
+- **Status:** [x] completed 2026-08-19 — all foundation files created + valid;
+  committed on `phase/00-repo-foundation`, merged to `main` (fast-forward; git
+  rejects squash into an empty head — see HANDOFF-00); `git status` clean. (No
+  code yet, so no lint/typecheck/tests applicable.)
+
+### P1 — Next.js scaffold + design system base
+- **Branch:** `phase/01-scaffold` - **Skills:** Core + `nextjs`, `typescript`, `tailwind-css`, `react`, `design-taste-frontend`
+- **Tasks:** Write `package.json` deps (Next.js, TS, Tailwind, `next-themes`, lucide-react, `lint-staged`,
+  vitest, zod, `semantic-release` + changelog/git plugins). `next.config.*`, `tsconfig` (incremental, strict),
+  base `layout.tsx`, `globals.css` design tokens (monochrome + green/blue accent), dark-mode base.
+  **User runs `pnpm install` after this phase.**
+- **Exit criteria:** package.json + configs valid; build/lint verified by user post-install
+- **Status:** [ ] pending
+
+### P2 — Data layer (types + loaders + validation)
+- **Branch:** `phase/02-data-layer` - **Skills:** Core + `typescript`, `frontend-core`
+- **Tasks:** `lib/types.ts` (Product, Category, Feature, enums), `lib/data.ts` (loaders),
+  `data/categories.json` (full hierarchy), `data/features.json`, `scripts/validate-data.ts` (zod),
+  `data/products.json` placeholder
+- **Exit criteria:** `validate-data` passes on categories/features; `tsc --noEmit` clean; loader tests green
+- **Status:** [ ] pending
+
+### P3-P5 — Product data batches (~170 total)
+- **Branches:** `phase/03-data-products-a`, `phase/04-data-products-b`, `phase/05-data-products-c`
+- **Skills:** Core + `code-documenter`
+- **Batches:** P3: Infrastructure/Backend/Auth/Storage/Analytics/Monitoring - P4: Automation/Communication/
+  Email/Git-CI - P5: Design/Productivity/PM/Internal/AI/Security/Billing-CRM
+- **Exit criteria:** `validate-data` zero errors; all alternative refs resolve; ~170 products total
+- **Status:** [ ] [ ] [ ] pending
+
+### P6 — Core UI components
+- **Branch:** `phase/06-core-components` - **Skills:** Core + `frontend-craft`, `design-taste-frontend`, `minimalist-ui`, `react`, `tailwind-css`
+- **Tasks:** SearchBar, ProductCard, AlternativeCard, ProductLogo, PricingBadge, OpenSourceBadge,
+  SelfHostedBadge, GitHubStats, CategoryCard, FilterPanel, ComparisonTable, Breadcrumbs, EmptyState, Pagination
+- **Exit criteria:** build pass; components render with real data; no AI-slop patterns
+- **Status:** [ ] pending
+
+### P7 — Homepage
+- **Branch:** `phase/07-homepage` - **Skills:** Core + `frontend-craft`, `minimalist-ui`, `seo`, `frontend-performance`
+- **Tasks:** Hero + tagline, large search bar, trending products, category grid, popular SaaS->alternatives,
+  badge explainer section, contribute CTA
+- **Exit criteria:** homepage renders with live data; `generateMetadata` set; dark mode correct; LCP reasonable
+- **Status:** [ ] pending
+
+### P8 — Directory page (`/alternatives`)
+- **Branch:** `phase/08-directory` - **Skills:** Core + `frontend-core`, `frontend-craft`, `typescript`
+- **Tasks:** full grid, FilterPanel (pricing/hosting/license/difficulty), sorting (stars/name), pagination,
+  mobile bottom-sheet filters
+- **Exit criteria:** filters + sort + pagination work; mobile drawer works; build passes
+- **Status:** [ ] pending
+
+### P9 — Product detail + comparison
+- **Branch:** `phase/09-product-detail` - **Skills:** Core + `seo`, `nextjs`, `frontend-craft`
+- **Tasks:** `/alternatives/[slug]` (badges, links, best-alternatives cards, feature comparison table,
+  "why choose"), `generateStaticParams`, 404 handling, metadata + JSON-LD
+- **Exit criteria:** all seeded products generate pages; comparison table correct; SEO metadata present
+- **Status:** [ ] pending
+
+### P10 — Categories + search
+- **Branch:** `phase/10-categories-search` - **Skills:** Core + `seo`, `nextjs`, `frontend-core`
+- **Tasks:** `/categories`, `/categories/[slug]` (filterable grid), `/search` (client-side over
+  name/desc/tags/category/alternatives, keyboard-friendly)
+- **Exit criteria:** "vercel", "self hosted analytics", "zapier alternative" queries return correct results
+- **Status:** [ ] pending
+
+### P11 — Contribute page + SEO pass
+- **Branch:** `phase/11-contribute-seo` - **Skills:** Core + `seo`, `nextjs`, `markdown-for-agents`
+- **Tasks:** `/contribute` (GitHub contribution flow), `sitemap.ts`, `robots.ts`, `llms.txt`,
+  metadata polish, canonical/OG everywhere
+- **Exit criteria:** sitemap valid; robots correct; metadata on every dynamic page; no thin/duplicate SEO pages
+- **Status:** [ ] pending
+
+### P12 — Tests + quality gate
+- **Branch:** `phase/12-tests` - **Skills:** Core (testing-heavy)
+- **Tasks:** Vitest suite: data validation, alternative relationships, search, GitHub metadata parsing,
+  key component renders; coverage of `lib/`
+- **Exit criteria:** `pnpm test` green; `lib/` coverage >= 80%
+- **Status:** [ ] pending
+
+### P13 — GitHub sync + CI + contribution flow
+- **Branch:** `phase/13-sync-ci` - **Skills:** Core + `github-actions-engineering`, `open-source-project-maintainer`
+- **Tasks:** `scripts/sync-github.ts` (stars/forks/license/release, idempotent, `GITHUB_TOKEN`),
+  `.env.example`, `.github/workflows/validate.yml` (lint + typecheck + test + validate-data on PR,
+  path-filtered), `.github/workflows/release.yml` (semantic-release on push to main), `release.config.mjs`,
+  `CONTRIBUTING.md`
+- **Exit criteria:** sync script runs twice safely; CI workflow syntax valid; CONTRIBUTING complete;
+  release config valid (npm publish off, changelog + git plugins)
+- **Status:** [ ] pending
+
+### P14 — Docs + release polish
+- **Branch:** `phase/14-docs-release` - **Skills:** Core + `technical-writer`, `code-documenter`, `code-reviewer`, `code-simplification`
+- **Tasks:** README (what/features/stack/dev/contribute/deploy-on-Vercel/roadmap), `docs/` handoffs,
+  final code-review pass + simplification, version tag
+- **Exit criteria:** README complete; no blocking review findings; full test+build+lint green on main
+- **Status:** [ ] pending
+
+### P15 — Agentic build guide
+- **Branch:** `phase/15-agentic-build-guide` - **Skills:** Core + `technical-writer`
+- **Tasks:** **`AGENTIC_BUILD_GUIDE.md`** — pura build flow report/guide: intake, skills selection,
+  phases, branches, merge strategy, handoffs, maintenance, CHANGELOG/semantic-release setup —
+  reusable for future projects, improvable over time
+- **Exit criteria:** guide complete; user review; covers CHANGELOG.md generation via semantic-release
+- **Status:** [ ] pending
+
+## Session handoff protocol
+
+At the end of every phase, write `docs/handoffs/HANDOFF-NN.md` on the same branch:
+
+```
+# HANDOFF — phase/0N
+Goal: <phase goal>
+Branch: <branch name>
+Status: complete | blocked
+Files touched: <list>
+Decisions: <key decisions>
+Verification: <exit criteria evidence - tests/build output>
+Next phase: phase/0M - <1-line brief>
+Open issues / follow-ups: <list>
+```
+
+Then mark the phase `[x]` in this file. Next session reads: `PLAN.md` -> `AGENTS.md` ->
+`docs/handoffs/HANDOFF-NN.md`, cuts the next branch from latest `main`, and implements.
+
+## CHANGELOG.md strategy
+
+- Single repo -> **semantic-release** (https://github.com/semantic-release/semantic-release).
+- `release.config.mjs` uses `@semantic-release/changelog` + `@semantic-release/git`; npm publish disabled.
+- Runs via `.github/workflows/release.yml` on push to `main`; squash-merge PRs produce one conventional
+  commit per phase, so version + CHANGELOG auto-generate.
+- PRs must follow Conventional Commits (enforced via PR template + CONTRIBUTING.md).
+- Documented in `AGENTIC_BUILD_GUIDE.md` (P15).
+- changesets (https://github.com/changesets/changesets) is the monorepo alternative - not used here.
+
+## Delivery order recap
+
+```
+P0 foundation -> P1 scaffold -> P2 data layer -> P3-5 data batches -> P6 components
+-> P7 homepage -> P8 directory -> P9 product -> P10 cat/search -> P11 SEO
+-> P12 tests -> P13 sync/CI -> P14 docs/release -> P15 agentic-build-guide -> final main
+```
+
+Every phase = new session = new branch = merge to main before the next.
