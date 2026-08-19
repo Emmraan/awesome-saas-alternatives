@@ -1,0 +1,350 @@
+[
+  {
+    "slug": "infrastructure",
+    "name": "Infrastructure",
+    "description": "Hosting, cloud, serverless and container platforms to run your apps.",
+    "parent": null
+  },
+  {
+    "slug": "cloud-hosting",
+    "name": "Cloud Hosting",
+    "description": "General-purpose cloud hosting platforms and VPS providers.",
+    "parent": "infrastructure"
+  },
+  {
+    "slug": "serverless",
+    "name": "Serverless",
+    "description": "Function-as-a-service and edge compute runtimes.",
+    "parent": "infrastructure"
+  },
+  {
+    "slug": "containers",
+    "name": "Containers & Orchestration",
+    "description": "Container runtimes, registries and orchestration tools.",
+    "parent": "infrastructure"
+  },
+  {
+    "slug": "backend",
+    "name": "Backend",
+    "description": "Backend-as-a-service, realtime engines and API tooling.",
+    "parent": null
+  },
+  {
+    "slug": "baas",
+    "name": "Backend-as-a-Service",
+    "description": "Managed backends with auth, database and realtime built in.",
+    "parent": "backend"
+  },
+  {
+    "slug": "realtime",
+    "name": "Realtime & WebSockets",
+    "description": "Realtime messaging, presence and live-sync infrastructure.",
+    "parent": "backend"
+  },
+  {
+    "slug": "api",
+    "name": "API Development",
+    "description": "API gateways, design, mocking and documentation tools.",
+    "parent": "backend"
+  },
+  {
+    "slug": "auth",
+    "name": "Authentication",
+    "description": "Authentication, identity and access-management providers.",
+    "parent": null
+  },
+  {
+    "slug": "identity",
+    "name": "Identity & Access",
+    "description": "Single sign-on, MFA and identity brokering.",
+    "parent": "auth"
+  },
+  {
+    "slug": "storage",
+    "name": "Storage",
+    "description": "Object storage, file hosting and content delivery.",
+    "parent": null
+  },
+  {
+    "slug": "object-storage",
+    "name": "Object Storage",
+    "description": "S3-compatible and general object/blob storage.",
+    "parent": "storage"
+  },
+  {
+    "slug": "file-sharing",
+    "name": "File Sharing & Sync",
+    "description": "Dropbox-style file sync, sharing and collaboration.",
+    "parent": "storage"
+  },
+  {
+    "slug": "databases",
+    "name": "Databases",
+    "description": "SQL, NoSQL, vector and hosted database platforms.",
+    "parent": "storage"
+  },
+  {
+    "slug": "analytics",
+    "name": "Analytics",
+    "description": "Web, product and business analytics platforms.",
+    "parent": null
+  },
+  {
+    "slug": "web-analytics",
+    "name": "Web Analytics",
+    "description": "Privacy-friendly site and traffic analytics.",
+    "parent": "analytics"
+  },
+  {
+    "slug": "product-analytics",
+    "name": "Product Analytics",
+    "description": "Event tracking, funnels and user behavior analytics.",
+    "parent": "analytics"
+  },
+  {
+    "slug": "social-analytics",
+    "name": "Social Media Analytics",
+    "description": "Social listening, scheduling and engagement analytics.",
+    "parent": "analytics"
+  },
+  {
+    "slug": "monitoring",
+    "name": "Monitoring & Observability",
+    "description": "Monitoring, alerting, logging and tracing infrastructure.",
+    "parent": null
+  },
+  {
+    "slug": "apm",
+    "name": "APM & Tracing",
+    "description": "Application performance monitoring and distributed tracing.",
+    "parent": "monitoring"
+  },
+  {
+    "slug": "logging",
+    "name": "Log Management",
+    "description": "Log collection, search and aggregation.",
+    "parent": "monitoring"
+  },
+  {
+    "slug": "uptime",
+    "name": "Uptime & Status",
+    "description": "Uptime monitoring and public status pages.",
+    "parent": "monitoring"
+  },
+  {
+    "slug": "automation",
+    "name": "Automation",
+    "description": "Workflow automation, scraping and robotic process automation.",
+    "parent": null
+  },
+  {
+    "slug": "workflow",
+    "name": "Workflow Automation",
+    "description": "Zapier-style integrations and no-code automation.",
+    "parent": "automation"
+  },
+  {
+    "slug": "scraping",
+    "name": "Web Scraping",
+    "description": "Scraping, crawling and data-extraction tooling.",
+    "parent": "automation"
+  },
+  {
+    "slug": "communication",
+    "name": "Communication",
+    "description": "Team chat, video conferencing and voice platforms.",
+    "parent": null
+  },
+  {
+    "slug": "team-chat",
+    "name": "Team Chat",
+    "description": "Slack-style messaging and collaboration.",
+    "parent": "communication"
+  },
+  {
+    "slug": "video-conferencing",
+    "name": "Video Conferencing",
+    "description": "Virtual meetings, webinars and streaming.",
+    "parent": "communication"
+  },
+  {
+    "slug": "email",
+    "name": "Email",
+    "description": "Email services, deliverability and mail hosting.",
+    "parent": null
+  },
+  {
+    "slug": "transactional-email",
+    "name": "Transactional Email",
+    "description": "SendGrid-style delivery APIs and infrastructure.",
+    "parent": "email"
+  },
+  {
+    "slug": "email-marketing",
+    "name": "Email Marketing",
+    "description": "Newsletters, campaigns and marketing automation.",
+    "parent": "email"
+  },
+  {
+    "slug": "git-ci",
+    "name": "Git & CI/CD",
+    "description": "Git hosting, code review, CI and delivery pipelines.",
+    "parent": null
+  },
+  {
+    "slug": "git-hosting",
+    "name": "Git Hosting",
+    "description": "Git repository hosting and collaboration.",
+    "parent": "git-ci"
+  },
+  {
+    "slug": "ci-cd",
+    "name": "CI/CD",
+    "description": "Continuous integration, delivery and build pipelines.",
+    "parent": "git-ci"
+  },
+  {
+    "slug": "feature-flags",
+    "name": "Feature Flags",
+    "description": "Feature toggles and experimentation platform.",
+    "parent": "git-ci"
+  },
+  {
+    "slug": "design",
+    "name": "Design",
+    "description": "UI/UX design, prototyping and design systems.",
+    "parent": null
+  },
+  {
+    "slug": "ui-design",
+    "name": "UI/UX Design",
+    "description": "Vector design, prototyping and handoff tools.",
+    "parent": "design"
+  },
+  {
+    "slug": "design-assets",
+    "name": "Design Assets",
+    "description": "Icons, illustrations and asset management.",
+    "parent": "design"
+  },
+  {
+    "slug": "productivity",
+    "name": "Productivity",
+    "description": "Notes, docs, knowledge bases and team productivity tools.",
+    "parent": null
+  },
+  {
+    "slug": "notes-docs",
+    "name": "Notes & Docs",
+    "description": "Notion-style documents and note-taking.",
+    "parent": "productivity"
+  },
+  {
+    "slug": "knowledge-base",
+    "name": "Knowledge Base",
+    "description": "Internal wikis and documentation platforms.",
+    "parent": "productivity"
+  },
+  {
+    "slug": "pm",
+    "name": "Project Management",
+    "description": "Task tracking, kanban and project planning.",
+    "parent": null
+  },
+  {
+    "slug": "task-management",
+    "name": "Task Management",
+    "description": "Issue tracking, kanban boards and task lists.",
+    "parent": "pm"
+  },
+  {
+    "slug": "roadmapping",
+    "name": "Roadmapping",
+    "description": "Product roadmaps and release planning.",
+    "parent": "pm"
+  },
+  {
+    "slug": "internal",
+    "name": "Internal Tools",
+    "description": "Admin panels, dashboards and internal app builders.",
+    "parent": null
+  },
+  {
+    "slug": "admin-panels",
+    "name": "Admin Panels",
+    "description": "Low-code internal tool and admin UI builders.",
+    "parent": "internal"
+  },
+  {
+    "slug": "ai",
+    "name": "AI & ML",
+    "description": "LLM tooling, model hosting and AI application platforms.",
+    "parent": null
+  },
+  {
+    "slug": "llm",
+    "name": "LLM & GenAI",
+    "description": "LLM gateways, chat UIs and generative AI tooling.",
+    "parent": "ai"
+  },
+  {
+    "slug": "ml-platform",
+    "name": "ML Platforms",
+    "description": "Model training, deployment and MLOps.",
+    "parent": "ai"
+  },
+  {
+    "slug": "security",
+    "name": "Security",
+    "description": "Secrets, vaults, scanners and security tooling.",
+    "parent": null
+  },
+  {
+    "slug": "secrets",
+    "name": "Secrets Management",
+    "description": "Secrets vaults and key management.",
+    "parent": "security"
+  },
+  {
+    "slug": "vulnerability",
+    "name": "Vulnerability Scanning",
+    "description": "SAST, DAST and dependency scanning.",
+    "parent": "security"
+  },
+  {
+    "slug": "password-management",
+    "name": "Password Management",
+    "description": "Password managers and team credential sharing.",
+    "parent": "security"
+  },
+  {
+    "slug": "billing-crm",
+    "name": "Billing, Payments & CRM",
+    "description": "Subscription billing, payment processing and CRM.",
+    "parent": null
+  },
+  {
+    "slug": "payments",
+    "name": "Payments",
+    "description": "Payment processing and merchant infrastructure.",
+    "parent": "billing-crm"
+  },
+  {
+    "slug": "billing",
+    "name": "Subscription Billing",
+    "description": "Recurring billing, invoicing and revenue automation.",
+    "parent": "billing-crm"
+  },
+  {
+    "slug": "crm",
+    "name": "CRM",
+    "description": "Customer relationship and pipeline management.",
+    "parent": "billing-crm"
+  },
+  {
+    "slug": "customer-support",
+    "name": "Customer Support",
+    "description": "Helpdesk, ticketing and live-chat tools.",
+    "parent": "billing-crm"
+  }
+]

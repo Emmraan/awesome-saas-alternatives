@@ -118,7 +118,14 @@ low-end machine rules)
   `data/categories.json` (full hierarchy), `data/features.json`, `scripts/validate-data.ts` (zod),
   `data/products.json` placeholder
 - **Exit criteria:** `validate-data` passes on categories/features; `tsc --noEmit` clean; loader tests green
-- **Status:** [ ] pending
+- **Status:** [x] completed 2026-08-19 — `lib/schemas.ts` (zod schemas, single source of truth),
+  `lib/types.ts` (re-exports derived types), `lib/data.ts` (loaders), `data/categories.json`
+  (58 categories, full hierarchy), `data/features.json` (15 features, grouped),
+  `data/products.json` (empty placeholder), `scripts/validate-data.ts` (zod + cross-ref checks),
+  `tests/data.test.ts` (11 loader tests). Added `tsx` devDep + `validate-data` pnpm script;
+  approved `esbuild` build in `pnpm-workspace.yaml`. Verified: `pnpm validate-data` ✓
+  (58 cats / 15 features / 0 products), `pnpm typecheck` clean, `pnpm test` 11/11 green
+  (see HANDOFF-02).
 
 ### P3-P5 — Product data batches (~170 total)
 - **Branches:** `phase/03-data-products-a`, `phase/04-data-products-b`, `phase/05-data-products-c`

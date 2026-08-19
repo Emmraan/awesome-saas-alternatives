@@ -1,0 +1,92 @@
+[
+  {
+    "id": "self-hosted",
+    "name": "Self-hosted",
+    "description": "Can be deployed on your own infrastructure.",
+    "group": "deployment"
+  },
+  {
+    "id": "open-source",
+    "name": "Open source",
+    "description": "Source code is publicly available.",
+    "group": "license"
+  },
+  {
+    "id": "docker",
+    "name": "Docker image",
+    "description": "Official Docker image or docker-compose support.",
+    "group": "deployment"
+  },
+  {
+    "id": "kubernetes",
+    "name": "Kubernetes",
+    "description": "Helm charts or K8s manifests for cluster deploys.",
+    "group": "deployment"
+  },
+  {
+    "id": "rest-api",
+    "name": "REST API",
+    "description": "Exposes a programmatic REST API.",
+    "group": "integration"
+  },
+  {
+    "id": "webhooks",
+    "name": "Webhooks",
+    "description": "Outgoing events via webhooks.",
+    "group": "integration"
+  },
+  {
+    "id": "oauth-sso",
+    "name": "OAuth & SSO",
+    "description": "Supports OAuth, SAML or single sign-on.",
+    "group": "security"
+  },
+  {
+    "id": "mfa",
+    "name": "Multi-factor auth",
+    "description": "Second-factor or passwordless authentication.",
+    "group": "security"
+  },
+  {
+    "id": "dark-mode",
+    "name": "Dark mode",
+    "description": "First-class dark theme.",
+    "group": "ux"
+  },
+  {
+    "id": "collaboration",
+    "name": "Collaboration",
+    "description": "Multi-user editing, comments or shared workspaces.",
+    "group": "ux"
+  },
+  {
+    "id": "mobile-app",
+    "name": "Mobile app",
+    "description": "Official iOS/Android application.",
+    "group": "platform"
+  },
+  {
+    "id": "import-export",
+    "name": "Import / Export",
+    "description": "Data migration in and out.",
+    "group": "data"
+  },
+  {
+    "id": "plugins",
+    "name": "Plugins & extensions",
+    "description": "Extensible via plugins or an add-on ecosystem.",
+    "group": "integration"
+  },
+  {
+    "id": "cli",
+    "name": "CLI",
+    "description": "Command-line interface for automation.",
+    "group": "integration"
+  },
+  {
+    "id": "free-tier",
+    "name": "Free tier",
+    "description": "Usable free for small projects or self-hosting.",
+    "group": "pricing"
+  }
+]
