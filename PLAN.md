@@ -277,7 +277,7 @@ low-end machine rules)
   phases, branches, merge strategy, handoffs, maintenance, CHANGELOG/semantic-release setup —
   reusable for future projects, improvable over time
 - **Exit criteria:** guide complete; user review; covers CHANGELOG.md generation via semantic-release
-- **Status:** [ ] pending
+- **Status:** [x] completed 2026-08-20 — `AGENTIC_BUILD_GUIDE.md` (4144 words, intro→intake→planning→branches→handoffs→skills→verification→docs→CI/releases→maintenance→reuse checklist→troubleshooting + 3 appendices P0–P15 timeline/ownership/commands; `CHANGELOG.md` via `semantic-release` with `release.config.mjs`/`release.yml`/`validate.yml` walkthrough, `npmPublish: false`, `[skip ci]`), `tsc` clean, eslint 0/0, `pnpm test` 143/143, coverage lib 98.62%/91.93%/100%/98.91% ≥80%, `validate-data` 58/15/181 ✓ on `phase/15-agentic-build-guide`; see HANDOFF-15.
 
 ## Session handoff protocol
 
