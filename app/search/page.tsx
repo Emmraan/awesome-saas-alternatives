@@ -42,7 +42,6 @@ export default function SearchPage() {
             <SearchBar
               defaultValue=""
               placeholder="Search tools, categories, alternatives…"
-              onSubmit={() => {}}
             />
           </div>
         }

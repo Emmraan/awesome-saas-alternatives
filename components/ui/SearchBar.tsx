@@ -14,7 +14,7 @@ export function SearchBar({
   defaultValue?: string;
   value?: string;
   placeholder?: string;
-  onSubmit: (query: string) => void;
+  onSubmit?: (query: string) => void;
   onChange?: (value: string) => void;
   autoFocus?: boolean;
 }) {
@@ -32,7 +32,7 @@ export function SearchBar({
       role="search"
       onSubmit={(event) => {
         event.preventDefault();
-        onSubmit(current.trim());
+        onSubmit?.(current.trim());
       }}
       className="relative"
     >
