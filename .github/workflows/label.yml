@@ -12,6 +12,7 @@ jobs:
   label:
     name: auto-label by paths
     runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
     steps:
       - name: Label by paths
         uses: actions/labeler@v5
