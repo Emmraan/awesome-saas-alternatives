@@ -34,24 +34,26 @@ const ITEMS = [
 export function BadgeExplainer() {
   return (
     <section className="border-b border-border">
-      <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+      <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <SectionHeading
           eyebrow="How to read the badges"
           title="Five signals, one glance"
           description="Every card in the directory uses the same five badges, so you can scan a stack of tools without opening each one."
         />
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {ITEMS.map((item) => (
             <div
               key={item.title}
-              className="rounded-lg border border-border bg-card p-5"
+              className="rounded-xl border border-border bg-card p-5 shadow-sm"
             >
-              <div>{item.badge}</div>
-              <h3 className="mt-3 text-sm font-semibold text-foreground">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
+                <span className="scale-90">{item.badge}</span>
+              </div>
+              <h3 className="mt-3 text-sm font-semibold tracking-tight text-foreground">
                 {item.title}
               </h3>
-              <p className="mt-1 text-sm leading-6 text-muted-foreground">
+              <p className="mt-1 text-xs leading-5 text-muted-foreground">
                 {item.description}
               </p>
             </div>

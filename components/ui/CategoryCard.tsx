@@ -15,27 +15,28 @@ export function CategoryCard({
     <Link
       href={`/categories/${category.slug}`}
       className={cn(
-        "group block rounded-lg border border-border bg-card p-4",
-        "transition-[border-color,box-shadow,transform] duration-200",
-        "hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-[0_2px_8px_rgba(0,0,0,0.05)]",
-        "dark:hover:border-zinc-700 dark:hover:shadow-[0_2px_12px_rgba(0,0,0,0.35)]",
-        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
+        "group flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-[border-color,box-shadow] hover:border-zinc-300 hover:shadow-card-hover dark:hover:border-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
         className,
       )}
     >
-      <div className="flex items-start justify-between gap-2">
-        <h3 className="text-sm font-semibold text-foreground transition-colors group-hover:text-primary">
-          {category.name}
-        </h3>
+      <div className="flex items-center gap-1.5 border-b border-border bg-muted/20 px-3 py-2">
+        <span className="h-2 w-2 rounded-full bg-border" aria-hidden="true" />
+        <span className="h-2 w-2 rounded-full bg-border" aria-hidden="true" />
+        <span className="h-2 w-2 rounded-full bg-emerald-400/60" aria-hidden="true" />
         {productCount !== undefined && (
-          <span className="shrink-0 rounded-full bg-muted px-2 py-0.5 text-[11px] tabular-nums text-muted-foreground">
+          <span className="ml-auto rounded-full bg-muted px-2 py-0.5 text-[11px] font-medium tabular-nums text-muted-foreground">
             {productCount}
           </span>
         )}
       </div>
-      <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-muted-foreground">
-        {category.description}
-      </p>
+      <div className="p-4">
+        <h3 className="text-[15px] font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary">
+          {category.name}
+        </h3>
+        <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-muted-foreground">
+          {category.description}
+        </p>
+      </div>
     </Link>
   );
 }

@@ -40,7 +40,7 @@ export function SearchBar({
         Search products
       </label>
       <Search
-        className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+        className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
         strokeWidth={1.75}
         aria-hidden="true"
       />
@@ -51,14 +51,30 @@ export function SearchBar({
         onChange={(event) => updateValue(event.target.value)}
         placeholder={placeholder}
         autoFocus={autoFocus}
-        className="h-11 w-full rounded-md border border-input bg-background pl-9 pr-9 text-sm text-foreground shadow-none transition-colors placeholder:text-muted-foreground [&::-webkit-search-cancel-button]:appearance-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+        className="h-11 w-full rounded-full border border-border bg-card pl-10 pr-20 text-sm text-foreground shadow-sm backdrop-blur transition-[border-color,box-shadow] placeholder:text-muted-foreground/70 focus:border-primary/30 focus:shadow-[0_0_0_3px_rgba(16,185,129,0.12)] focus:outline-none [&::-webkit-search-cancel-button]:appearance-none"
       />
+      <div className="pointer-events-none absolute right-2 top-1/2 hidden -translate-y-1/2 items-center gap-1 sm:flex">
+        {current.length > 0 ? (
+          <button
+            type="button"
+            onClick={() => updateValue("")}
+            aria-label="Clear search"
+            className="pointer-events-auto inline-flex h-7 w-7 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          >
+            <X className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden="true" />
+          </button>
+        ) : (
+          <span className="hidden items-center gap-1 rounded-full border border-border bg-muted/50 px-2 py-1 font-mono text-[11px] text-muted-foreground lg:inline-flex">
+            ⌘ K
+          </span>
+        )}
+      </div>
       {current.length > 0 && (
         <button
           type="button"
           onClick={() => updateValue("")}
           aria-label="Clear search"
-          className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded p-1 text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          className="absolute right-2 top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring sm:hidden"
         >
           <X className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
         </button>

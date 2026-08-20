@@ -3,35 +3,54 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #fafafa;
-  --foreground: #18181b;
+  --background: #fcfcfc;
+  --foreground: #0f0f12;
   --card: #ffffff;
-  --card-foreground: #18181b;
+  --card-foreground: #0f0f12;
+  --popover: #ffffff;
+  --popover-foreground: #0f0f12;
+  --primary: #10b981;
+  --primary-foreground: #052e16;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
   --muted: #f4f4f5;
   --muted-foreground: #71717a;
+  --accent: #2563eb;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
   --border: #e4e4e7;
   --input: #e4e4e7;
   --ring: #10b981;
-  --primary: #059669;
-  --primary-foreground: #ffffff;
-  --accent: #2563eb;
-  --accent-foreground: #ffffff;
+  --radius: 0.75rem;
+  --grid-color: color-mix(in srgb, var(--border) 55%, transparent);
+  --shadow-card: 0 1px 2px rgba(16, 15, 18, 0.04), 0 4px 12px rgba(16, 15, 18, 0.05);
+  --shadow-card-hover: 0 4px 12px rgba(16, 15, 18, 0.08), 0 12px 24px rgba(16, 15, 18, 0.06);
 }
 
 .dark {
-  --background: #0c0c0d;
+  --background: #09090b;
   --foreground: #f4f4f5;
-  --card: #141416;
+  --card: #121214;
   --card-foreground: #f4f4f5;
+  --popover: #18181b;
+  --popover-foreground: #f4f4f5;
+  --primary: #10b981;
+  --primary-foreground: #022c1a;
+  --secondary: #1f1f23;
+  --secondary-foreground: #f4f4f5;
   --muted: #1f1f23;
   --muted-foreground: #a1a1aa;
-  --border: #26262b;
-  --input: #26262b;
-  --ring: #10b981;
-  --primary: #10b981;
-  --primary-foreground: #052e16;
   --accent: #3b82f6;
   --accent-foreground: #eff6ff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #232326;
+  --input: #232326;
+  --ring: #10b981;
+  --grid-color: color-mix(in srgb, var(--border) 70%, transparent);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
 @theme inline {
@@ -39,19 +58,31 @@
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
     Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --shadow-card: var(--shadow-card);
+  --shadow-card-hover: var(--shadow-card-hover);
 }
 
 @layer base {
@@ -60,8 +91,9 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
   }
 
   ::selection {
@@ -71,8 +103,16 @@
 
 @utility ambient-radial {
   background-image: radial-gradient(
-    ellipse 55% 45% at 22% 0%,
-    color-mix(in srgb, var(--ring) 8%, transparent),
-    transparent 72%
+    ellipse 58% 48% at 22% 0%,
+    color-mix(in srgb, var(--ring) 9%, transparent),
+    transparent 70%
   );
+}
+
+@utility ambient-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 80% 55% at 50% 0%, black 58%, transparent 82%);
 }

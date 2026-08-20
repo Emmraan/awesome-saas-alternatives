@@ -10,6 +10,7 @@ import {
   getTopAlternatives,
 } from "@/components/home/home-data";
 import { Hero } from "@/components/home/Hero";
+import { LogoWall } from "@/components/home/LogoWall";
 import { SwappableSaaS } from "@/components/home/SwappableSaaS";
 import { TopAlternatives } from "@/components/home/TopAlternatives";
 import { CategoryGrid } from "@/components/home/CategoryGrid";
@@ -47,6 +48,7 @@ export default function HomePage() {
   return (
     <>
       <Hero stats={stats} popularQueries={POPULAR_QUERIES} />
+      <LogoWall />
       <SwappableSaaS pairs={pairs} />
       <TopAlternatives products={topAlternatives} categories={categories} />
       <CategoryGrid categories={categoryCounts} />

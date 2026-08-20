@@ -10,8 +10,8 @@ export function TopAlternatives({
   categories: Category[];
 }) {
   return (
-    <section className="border-b border-border">
-      <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+    <section className="border-b border-border bg-card/30">
+      <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <SectionHeading
           eyebrow="Top alternatives"
           title="Most-swapped tools"
