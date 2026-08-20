@@ -29,7 +29,7 @@ export function ProductDetail({
   facts: ProductFact[];
 }) {
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+    <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },
@@ -38,11 +38,11 @@ export function ProductDetail({
         ]}
       />
 
-      <div className="mt-4">
+      <div className="mt-6">
         <ProductDetailHeader product={product} categories={categories} />
       </div>
 
-      <div className="mt-14">
+      <div className="mt-8 grid gap-6">
         <ReplacesSection
           product={product}
           replacedProducts={replacedProducts}
