@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Emmraan/awesome-saas-alternatives/compare/v1.0.0...v1.1.0) (2026-08-20)
+
+
+### Features
+
+* open-source-grade UI upgrade — SA monogram, shell, hero bento and card polish ([8983fd7](https://github.com/Emmraan/awesome-saas-alternatives/commit/8983fd7f493ad020f6288f50333f0af7ae552e92))
+
 # 1.0.0 (2026-08-20)
 
 
