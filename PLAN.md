@@ -269,7 +269,7 @@ low-end machine rules)
 - **Tasks:** README (what/features/stack/dev/contribute/deploy-on-Vercel/roadmap), `docs/` handoffs,
   final code-review pass + simplification, version tag
 - **Exit criteria:** README complete; no blocking review findings; full test+build+lint green on main
-- **Status:** [ ] pending
+- **Status:** [x] completed 2026-08-20 — `README.md` (2016 words, 17 headings, what/features/stack/dev/contribute/deploy-on-Vercel/roadmap, 14 local links OK, project-structure + data-model + search/SEO + sync + tests sections), final review pass no blocking findings, `tsc` clean, eslint 0/0, `pnpm test` 143/143, coverage lib 98.62%/91.93%/100%/98.91% ≥80%, `validate-data` 58/15/181 ✓ on `phase/14-docs-release`; see HANDOFF-14. Version tag deferred to semantic-release on squash-merge (release.yml, Conventional Commit).
 
 ### P15 — Agentic build guide
 - **Branch:** `phase/15-agentic-build-guide` - **Skills:** Core + `technical-writer`
