@@ -75,3 +75,7 @@ jobs:
 
       - name: Validate data
         run: pnpm validate-data
+
+      - name: Audit (high only, non-blocking)
+        run: pnpm audit --audit-level high || echo "::warning::pnpm audit found high-severity advisories — review manually"
+        continue-on-error: true

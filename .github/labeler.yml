@@ -1,0 +1,19 @@
+data:
+  - data/**
+
+ui:
+  - app/**
+  - components/**
+
+ci:
+  - .github/**
+
+deps:
+  - package.json
+  - pnpm-lock.yaml
+
+docs:
+  - README.md
+  - CONTRIBUTING.md
+  - CODE_OF_CONDUCT.md
+  - SECURITY.md
