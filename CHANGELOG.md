@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Emmraan/awesome-saas-alternatives/compare/v1.1.0...v1.2.0) (2026-08-20)
+
+
+### Features
+
+* polish product detail — terminal headers, bento cards and 7xl layout ([8de731b](https://github.com/Emmraan/awesome-saas-alternatives/commit/8de731b6a73344a4e8e0077db0861fec0181079e))
+
 # [1.1.0](https://github.com/Emmraan/awesome-saas-alternatives/compare/v1.0.0...v1.1.0) (2026-08-20)
 
 
