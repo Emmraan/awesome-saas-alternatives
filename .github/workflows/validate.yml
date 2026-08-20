@@ -1,0 +1,79 @@
+name: validate
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/validate.yml"
+      - "app/**"
+      - "components/**"
+      - "data/**"
+      - "lib/**"
+      - "scripts/**"
+      - "tests/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "tsconfig.json"
+      - "vitest.config.mts"
+      - "eslint.config.mjs"
+      - "next.config.*"
+      - "postcss.config.mjs"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/validate.yml"
+      - "app/**"
+      - "components/**"
+      - "data/**"
+      - "lib/**"
+      - "scripts/**"
+      - "tests/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "tsconfig.json"
+      - "vitest.config.mts"
+      - "eslint.config.mjs"
+      - "next.config.*"
+      - "postcss.config.mjs"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: lint + typecheck + test + validate-data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.22.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Tests + coverage
+        run: pnpm test:coverage
+
+      - name: Validate data
+        run: pnpm validate-data

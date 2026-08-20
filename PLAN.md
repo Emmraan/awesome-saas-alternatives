@@ -262,7 +262,7 @@ low-end machine rules)
   `CONTRIBUTING.md`
 - **Exit criteria:** sync script runs twice safely; CI workflow syntax valid; CONTRIBUTING complete;
   release config valid (npm publish off, changelog + git plugins)
-- **Status:** [ ] pending
+- **Status:** [x] complete 2026-08-20 — sync script idempotent (real-API run ×2: coolify then dokku), 143/143 tests green, eslint/tsc clean, YAML + release config validated, HANDOFF-13 written
 
 ### P14 — Docs + release polish
 - **Branch:** `phase/14-docs-release` - **Skills:** Core + `technical-writer`, `code-documenter`, `code-reviewer`, `code-simplification`
