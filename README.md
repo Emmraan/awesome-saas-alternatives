@@ -8,6 +8,8 @@ A developer-focused directory that maps **181 products** — paid SaaS and their
 - **Stack:** Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 · Zod · Vitest
 - **License:** [MIT](LICENSE)
 
+![Hero section — open-source alternatives](https://res.cloudinary.com/dxqqsk0xm/image/upload/v1787247220/e83fc0cf-3f24-432e-bf73-d65f5d8b61ce.png)
+
 ---
 
 ## Table of contents
