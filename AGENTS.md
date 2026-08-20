@@ -1,8 +1,7 @@
 # AGENTS.md — awesome-saas-alternatives
 
 Single source of truth for AI agents working in this repository. Read this file
-first, then `PLAN.md`, before touching anything. `CLAUDE.md` is a thin pointer
-back here.
+first before touching anything. `CLAUDE.md` is a thin pointer back here.
 
 ## Project
 
@@ -19,32 +18,26 @@ free, open-source, self-hosted and lower-cost alternatives to popular paid SaaS.
 
 1. **Research first, always.** Before ANY task/fix: web-fetch/reference check ->
    load the right skill (`.agents/skills/`) -> plan -> only then code. Never implement blindly.
-2. **Read `PLAN.md` first.** It is the master plan + live tracker. Every phase is
-   a branch, a new session, and a deterministic exit criterion.
-3. **Branch-per-phase.** `phase/NN-name`, squash-merge to `main`, one commit per
+2. **Branch-per-phase.** `phase/NN-name`, squash-merge to `main`, one commit per
    phase. Cut each branch from the latest `main` AFTER the previous merge.
-4. **`pnpm` only.** The agent writes deps into `package.json`; the **user runs
+3. **`pnpm` only.** The agent writes deps into `package.json`; the **user runs
    install/build commands**. Never run heavy installs/builds without the user's
    go-ahead (low-end machine rule).
-5. **Fast dev.** Lint/typecheck/build/test run ONLY on new/modified files
+4. **Fast dev.** Lint/typecheck/build/test run ONLY on new/modified files
    (lint-staged, `tsc incremental`, vitest `--changed`). Never the full suite on
    every change.
-6. **No fabrication.** GitHub stars/license/release metadata must be `null` unless
+5. **No fabrication.** GitHub stars/license/release metadata must be `null` unless
    fetched from the GitHub API.
-7. At the end of every phase: mark the phase `[x]` in `PLAN.md` with date +
-   evidence, write `docs/handoffs/HANDOFF-NN.md` on the same branch, then merge.
-8. **Conventional Commits** on every commit; `feat`/`fix` types feed semantic-release.
+6. **Conventional Commits** on every commit; `feat`/`fix` types feed semantic-release.
 
-## Repo layout & file ownership
+## Repo layout
 
-Ownership lives in `PLAN.md` (File ownership map). Highlights:
-
-| Files | Owner phase |
+| Files | Description |
 |---|---|
-| `AGENTS.md`, `CLAUDE.md`, `PLAN.md`, `LICENSE`, `.gitignore`, `.editorconfig`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `CHANGELOG.md`, `.nvmrc`, `.vscode/settings.json`, `.agents/`, `.claude/`, `skills-lock.json` | P0 |
-| `package.json`, `next.config.*`, `tsconfig.json`, `app/layout.tsx`, `app/globals.css` | P1 |
-| `lib/types.ts`, `lib/data.ts`, `data/*.json`, `scripts/validate-data.ts` | P2 |
-| `components/ui/*`, pages, tests, CI, docs | P6-P15 (see PLAN.md) |
+| `AGENTS.md`, `CLAUDE.md`, `LICENSE`, `.gitignore`, `.editorconfig`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `CHANGELOG.md`, `.nvmrc`, `.vscode/settings.json`, `.agents/`, `.claude/`, `skills-lock.json` | Project config & agent skills |
+| `package.json`, `next.config.*`, `tsconfig.json`, `app/layout.tsx`, `app/globals.css` | Scaffold & design system |
+| `lib/types.ts`, `lib/data.ts`, `data/*.json`, `scripts/validate-data.ts` | Data layer |
+| `components/ui/*`, pages, tests, CI | Features & quality gates |
 
 ## Commands
 
@@ -60,5 +53,4 @@ Ownership lives in `PLAN.md` (File ownership map). Highlights:
 ## Skills
 
 Installed skills live in `.agents/skills/` (and `.claude/skills/`); locked
-versions in `skills-lock.json`. Always load the skill(s) mapped to the current
-phase in `PLAN.md` — Core Kit is always on.
+versions in `skills-lock.json`.

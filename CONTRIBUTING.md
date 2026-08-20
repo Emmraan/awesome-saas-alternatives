@@ -29,7 +29,7 @@ process in [SECURITY.md](SECURITY.md).
 - **Docs** — this file, the README, or `docs/`.
 - **Triage** — confirming reported issues and verifying proposed alternatives.
 
-Open issues and the [project roadmap](PLAN.md) are good places to find work.
+Open issues are a good place to find work.
 For larger features, open an issue first and discuss before building.
 
 ---
@@ -70,7 +70,6 @@ data/           JSON data — categories, features, products (the "CMS")
 lib/            pure logic: types, schemas, search, directory, seo
 scripts/        Node/tsx scripts: validate-data, sync-github
 tests/          Vitest suite (data, logic, components)
-docs/           handoffs + reference material
 ```
 
 `lib/schemas.ts` is the single source of truth for the data shape (zod).
