@@ -3,7 +3,7 @@ name: validate
 on:
   pull_request:
     paths:
-      - ".github/workflows/validate.yml"
+      - ".github/**"
       - "app/**"
       - "components/**"
       - "data/**"
@@ -21,7 +21,7 @@ on:
   push:
     branches: [main]
     paths:
-      - ".github/workflows/validate.yml"
+      - ".github/**"
       - "app/**"
       - "components/**"
       - "data/**"
