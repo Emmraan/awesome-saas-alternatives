@@ -1,3 +1,31 @@
+# 1.0.0 (2026-08-20)
+
+
+### Bug Fixes
+
+* **ci:** remove duplicate pnpm version from workflows — use packageManager field ([2ae139d](https://github.com/Emmraan/awesome-saas-alternatives/commit/2ae139dd7bf7f4f60e3aad5a6f3a36ef8df41331))
+* make SearchBar onSubmit optional to fix search prerender ([e48ecf4](https://github.com/Emmraan/awesome-saas-alternatives/commit/e48ecf4babb7c48a0eef534a88a3b778828770b7))
+* rename vitest config to .mts to silence ESM/CJS loader warning ([3d554c6](https://github.com/Emmraan/awesome-saas-alternatives/commit/3d554c6112154c0ba1171058d007f9342a034dec))
+* use next/link for skip-to-content link (P7) [skip ci] ([020cb35](https://github.com/Emmraan/awesome-saas-alternatives/commit/020cb351a61a736a25c82be46d2e8ea863832ac8))
+
+
+### Features
+
+* add 40 product entries across automation, communication, email and git/ci (P4) ([018d8b4](https://github.com/Emmraan/awesome-saas-alternatives/commit/018d8b4ce3b382a5dbf8aff4bc65fcecc8cfcf12))
+* add 63 product entries across design, productivity, pm, internal, ai, security and billing/crm (P5) ([f9f3f4b](https://github.com/Emmraan/awesome-saas-alternatives/commit/f9f3f4bcec23b6109896719e134b410c0d6c36e3))
+* add 78 product entries across infra, database, auth, storage, analytics and monitoring (P3) ([7c55dfa](https://github.com/Emmraan/awesome-saas-alternatives/commit/7c55dfa471ff964f47aa544d1a465812ab694294))
+* add agentic build guide (P15) ([84f0b14](https://github.com/Emmraan/awesome-saas-alternatives/commit/84f0b14c850bb46a130d9e5b38d0ad0ac534422f))
+* add GitHub sync script, CI workflows and contribution flow (P13) [skip ci] ([ad204c4](https://github.com/Emmraan/awesome-saas-alternatives/commit/ad204c4d6b6149db821175db1e9e1012f1d40888))
+* add README and release polish (P14) [skip ci] ([6db6069](https://github.com/Emmraan/awesome-saas-alternatives/commit/6db6069fee5516863258cb6a8c588208c1bc3877))
+* categories and search pages with ranked client-side search (P10) [skip ci] ([179cb4d](https://github.com/Emmraan/awesome-saas-alternatives/commit/179cb4dbcfc105beb3ed8f5586787d7afb7b9e59))
+* contribute page and SEO pass with sitemap, robots and llms.txt (P11) [skip ci] ([fe0442a](https://github.com/Emmraan/awesome-saas-alternatives/commit/fe0442ae4ce03daf33ede7e1b7e16c4c81d51107))
+* core UI component library with real-data rendering (P6) [skip ci] ([6dc7205](https://github.com/Emmraan/awesome-saas-alternatives/commit/6dc72055aec312b4fab417f37ae69ba44fb42f98))
+* data layer with zod-validated types, loaders and categories (P2) ([5249591](https://github.com/Emmraan/awesome-saas-alternatives/commit/5249591018024f4262dd1da00224c103514afc93))
+* directory page with filters, sorting and pagination (P8) [skip ci] ([7898142](https://github.com/Emmraan/awesome-saas-alternatives/commit/7898142f5e3b2b796c77aa7c9c9d2e02fe77ad43))
+* homepage with live-data sections and site chrome (P7) [skip ci] ([31da70e](https://github.com/Emmraan/awesome-saas-alternatives/commit/31da70e79e0c208cb0217a92faa2905d144dad6a))
+* product detail pages with comparison and JSON-LD (P9) [skip ci] ([426362a](https://github.com/Emmraan/awesome-saas-alternatives/commit/426362ada080829e3553b78fefba89382a2e29d1))
+* scaffold Next.js + Tailwind design system (P1) ([15c40fa](https://github.com/Emmraan/awesome-saas-alternatives/commit/15c40faaf46e1e3475f90666a5724c6c14edfbeb))
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
