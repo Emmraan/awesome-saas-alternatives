@@ -244,7 +244,15 @@ low-end machine rules)
 - **Tasks:** Vitest suite: data validation, alternative relationships, search, GitHub metadata parsing,
   key component renders; coverage of `lib/`
 - **Exit criteria:** `pnpm test` green; `lib/` coverage >= 80%
-- **Status:** [ ] pending
+- **Status:** [x] completed 2026-08-20 — on `phase/12-tests`: closed the P12
+  follow-up from HANDOFF-11 (`@/` alias in `vitest.config.mts`, `.tsx` include,
+  v8 coverage w/ 80% thresholds on `lib/`); added `@vitest/coverage-v8` + 
+  `test:coverage` script; 3 new test files (45 tests): `tests/schemas.test.ts`
+  (data validation + GitHub metadata parsing, 20), `tests/format.test.ts`
+  (`formatCompact`/`cn`, 7), `tests/components.test.tsx` (key UI renders via
+  `renderToString` + mocked `next/link`, 18). Verified: `pnpm test` 118/118,
+  `tsc` clean, eslint 0/0, coverage `lib/` Statements 98.62% / Branches 91.93% /
+  Functions 100% / Lines 98.91% (gate >= 80% ✓). See HANDOFF-12.
 
 ### P13 — GitHub sync + CI + contribution flow
 - **Branch:** `phase/13-sync-ci` - **Skills:** Core + `github-actions-engineering`, `open-source-project-maintainer`
