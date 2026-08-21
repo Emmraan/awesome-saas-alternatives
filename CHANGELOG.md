@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/Emmraan/awesome-saas-alternatives/compare/v1.2.0...v1.2.1) (2026-08-21)
+
+
+### Bug Fixes
+
+* **ci:** skip labeler on dependabot PRs and remove branch protection doc ([#5](https://github.com/Emmraan/awesome-saas-alternatives/issues/5)) ([3206de5](https://github.com/Emmraan/awesome-saas-alternatives/commit/3206de5c7ea5e66bd32d2bbb33fc14c97054dbf0))
+
 # [1.2.0](https://github.com/Emmraan/awesome-saas-alternatives/compare/v1.1.0...v1.2.0) (2026-08-20)
 
 
