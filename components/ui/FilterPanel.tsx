@@ -24,8 +24,8 @@ export function FilterPanel({
   return (
     <div className="flex flex-col gap-6">
       {groups.map((group) => (
-        <fieldset key={group.id} className="min-w-0 rounded-xl border border-border bg-card p-3 shadow-sm">
-          <legend className="px-1 font-mono text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+        <fieldset key={group.id} className="min-w-0 rounded-lg border border-line bg-pine p-3 shadow-card">
+          <legend className="px-1 font-mono text-[10.5px] font-medium uppercase tracking-widest text-dim">
             {group.label}
           </legend>
           <div className="mt-2 flex flex-col gap-0.5">
@@ -34,18 +34,18 @@ export function FilterPanel({
               return (
                 <label
                   key={option.value}
-                  className="flex cursor-pointer items-center gap-2.5 rounded-lg px-2 py-1.5 text-sm transition-colors hover:bg-muted data-[checked=true]:bg-primary/5"
+                  className="flex cursor-pointer items-center gap-2.5 rounded-md px-2 py-1.5 text-sm transition-colors hover:bg-moss data-[checked=true]:bg-mint/5"
                   data-checked={checked}
                 >
                   <input
                     type="checkbox"
                     checked={checked}
                     onChange={() => onToggle(group.id, option.value)}
-                    className="h-4 w-4 shrink-0 rounded border-input accent-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                    className="h-4 w-4 shrink-0 rounded border-edge bg-raised accent-mint"
                   />
-                  <span className="flex-1 text-sm font-medium text-foreground">{option.label}</span>
+                  <span className="flex-1 text-[13px] font-medium text-ink">{option.label}</span>
                   {option.count !== undefined && (
-                    <span className="rounded-full bg-muted px-2 py-0.5 text-xs tabular-nums text-muted-foreground">
+                    <span className="rounded-full border border-line bg-raised px-2 py-0.5 font-mono text-[11px] tabular-nums text-dim">
                       {option.count}
                     </span>
                   )}

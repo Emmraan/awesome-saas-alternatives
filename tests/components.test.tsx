@@ -80,7 +80,7 @@ describe("cards", () => {
     );
     expect(html).toContain("Coolify");
     expect(html).toContain("alternatives/coolify");
-    expect(html).toContain("Replaces");
+    expect(html).toMatch(/replaces/i);
   });
 
   it("renders an alternative card with the replaced SaaS list", () => {

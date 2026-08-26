@@ -1,6 +1,5 @@
 import type { Product } from "@/lib/types";
 import type { ProductFact } from "@/lib/product-detail";
-import { SectionHeading } from "@/components/home/SectionHeading";
 
 export function WhyChooseSection({
   product,
@@ -12,24 +11,28 @@ export function WhyChooseSection({
   if (facts.length === 0) return null;
 
   return (
-    <section className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
-      <div className="flex items-center gap-1.5 border-b border-border bg-muted/20 px-4 py-2.5">
-        <span className="h-2 w-2 rounded-full bg-border" aria-hidden="true" />
-        <span className="h-2 w-2 rounded-full bg-emerald-400/60" aria-hidden="true" />
-        <span className="ml-2 font-mono text-xs text-muted-foreground">why choose — {facts.length} signals</span>
+    <section className="overflow-hidden rounded-lg border border-line bg-pine shadow-card">
+      <div className="flex items-center gap-2 border-b border-line bg-moss/60 px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-dim">
+        <span aria-hidden="true" className="text-mint">✓</span>
+        the facts — {facts.length} signals
       </div>
       <div className="p-6 sm:p-8">
-        <SectionHeading
-          eyebrow="Why choose"
-          title={`Why people pick ${product.name}`}
-          description="The deciding facts at a glance — pricing, licensing, hosting and setup effort."
-        />
+        <h2 className="font-display text-2xl font-bold tracking-tight text-ink sm:text-[1.7rem]">
+          Why people pick{" "}
+          <span className="text-mint">{product.name}</span>
+        </h2>
+        <p className="mt-2 max-w-2xl text-[14px] leading-relaxed text-fog">
+          The deciding facts at a glance — pricing, licensing, hosting and
+          setup effort.
+        </p>
 
-        <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {facts.map((fact) => (
-            <li key={fact.label} className="rounded-xl border border-border bg-muted/20 p-4">
-              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-primary">{fact.label}</p>
-              <p className="mt-2 text-sm leading-6 text-foreground">{fact.value}</p>
+            <li key={fact.label} className="rounded-lg border border-line bg-raised/50 p-4">
+              <p className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-mint">
+                {fact.label}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-fog">{fact.value}</p>
             </li>
           ))}
         </ul>

@@ -11,7 +11,7 @@ export function OpenSourceBadge({
   return (
     <span
       className={cn(
-        "inline-flex items-center whitespace-nowrap rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-medium leading-4 text-emerald-800 dark:bg-emerald-500/15 dark:text-emerald-300",
+        "inline-flex items-center whitespace-nowrap rounded-full border border-edge bg-raised px-2.5 py-0.5 font-mono text-[10.5px] font-medium uppercase tracking-wide leading-4 text-fog",
         className,
       )}
     >

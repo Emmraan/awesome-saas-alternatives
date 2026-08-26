@@ -74,11 +74,11 @@ export function SearchResults({
         </div>
       ) : (
         <div ref={resultsRef} tabIndex={-1} className="mt-10 focus-visible:outline-none">
-          <p className="text-sm text-muted-foreground" role="status">
+          <p className="font-mono text-[12px] text-dim" role="status">
             {results.length} result{results.length === 1 ? "" : "s"} for “
             {query.trim()}”
           </p>
-          <ul className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {results.map((product) => (
               <li key={product.slug} className="flex">
                 <ProductCard

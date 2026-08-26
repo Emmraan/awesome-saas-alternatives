@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Instrument_Sans, JetBrains_Mono } from "next/font/google";
 import Link from "next/link";
 import { ThemeProvider } from "next-themes";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { getProducts } from "@/lib/data";
 import {
   SITE_DESCRIPTION,
   SITE_NAME,
@@ -12,13 +13,18 @@ import {
 } from "@/lib/seo";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const display = Bricolage_Grotesque({
+  variable: "--font-display-var",
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const sans = Instrument_Sans({
+  variable: "--font-sans-var",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  variable: "--font-mono-var",
   display: "swap",
 });
 
@@ -58,9 +64,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`}
+        className={`${display.variable} ${sans.variable} ${mono.variable} relative flex min-h-screen flex-col antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -68,14 +74,27 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {/* ambient layers */}
+          <div
+            aria-hidden="true"
+            className="bg-glowfield pointer-events-none fixed inset-0 -z-20"
+          />
+          <div
+            aria-hidden="true"
+            className="bg-gridlines pointer-events-none fixed inset-0 -z-10"
+          />
+          <div
+            aria-hidden="true"
+            className="noise-layer pointer-events-none fixed inset-0 z-[60]"
+          />
           <Link
             href="#main"
-            className="sr-only z-50 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:outline-2 focus:outline-offset-2 focus:outline-ring"
+            className="sr-only z-[70] rounded-md bg-mint px-4 py-2 font-mono text-sm font-medium text-void focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:outline-2 focus:outline-offset-2 focus:outline-mint"
           >
             Skip to content
           </Link>
-          <SiteHeader />
-          <main id="main" className="flex-1">
+          <SiteHeader productCount={getProducts().length} />
+          <main id="main" className="relative z-0 flex-1">
             {children}
           </main>
           <SiteFooter />

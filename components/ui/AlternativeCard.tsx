@@ -1,11 +1,7 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import type { Category, Product } from "@/lib/types";
 import { cn } from "@/lib/cn";
-import { ProductLogo } from "./ProductLogo";
 import { PricingBadge } from "./PricingBadge";
-import { OpenSourceBadge } from "./OpenSourceBadge";
-import { SelfHostedBadge } from "./SelfHostedBadge";
 
 export function AlternativeCard({
   product,
@@ -32,53 +28,47 @@ export function AlternativeCard({
     <Link
       href={`/alternatives/${product.slug}`}
       className={cn(
-        "group flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-[border-color,box-shadow] hover:border-zinc-300 hover:shadow-card-hover dark:hover:border-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
+        "group relative flex h-full flex-col rounded-lg border border-line bg-pine p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-edge hover:bg-moss hover:shadow-card-hover",
         className,
       )}
     >
-      <div className="flex items-center gap-1.5 border-b border-border bg-muted/20 px-3 py-2">
-        <span className="h-2 w-2 rounded-full bg-emerald-400/70" aria-hidden="true" />
-        <span className="ml-auto rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-5 h-8 w-[3px] origin-top scale-y-0 rounded-r bg-mint transition-transform duration-300 group-hover:scale-y-100"
+      />
+
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <h3 className="truncate font-display text-[1.18rem] font-semibold leading-tight tracking-tight text-ink transition-colors group-hover:text-mint">
+            {product.name}
+          </h3>
+          <p className="mt-1 line-clamp-2 text-[13.5px] leading-snug text-fog">
+            {product.tagline}
+          </p>
+        </div>
+        <span className="shrink-0 rounded-full border border-mint/35 bg-minttint px-2.5 py-0.5 font-mono text-[10.5px] font-medium uppercase tracking-wide text-mint">
           Replaces {product.replaces.length}
         </span>
       </div>
-      <div className="flex flex-1 flex-col gap-3 p-4">
-        <div className="flex items-start gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border bg-muted/40">
-            <ProductLogo name={product.name} size="sm" />
-          </div>
-          <div className="min-w-0 flex-1">
-            <h3 className="truncate text-[15px] font-semibold tracking-tight text-foreground">
-              {product.name}
-            </h3>
-            <p className="line-clamp-2 text-xs leading-5 text-muted-foreground">
-              {product.tagline}
-            </p>
-          </div>
-        </div>
 
-        {product.replaces.length > 0 && (
-          <div className="flex items-start gap-2 rounded-lg border border-primary/10 bg-primary/5 px-2.5 py-2">
-            <ArrowRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" strokeWidth={1.75} aria-hidden="true" />
-            <p className="text-[11px] leading-4 text-muted-foreground">
-              Replaces{" "}
-              <span className="font-medium text-foreground">{replaced.join(", ")}</span>
-              {remaining > 0 && <span> and {remaining} more</span>}
-            </p>
-          </div>
-        )}
-
-        <div className="flex flex-wrap items-center gap-1.5">
-          <PricingBadge pricing={product.pricing} />
-          <OpenSourceBadge openSource={product.openSource} />
-          <SelfHostedBadge selfHosted={product.selfHosted} />
+      {product.replaces.length > 0 && (
+        <div className="mt-3.5 flex items-start gap-2 rounded-md border border-mint/20 bg-minttint/60 px-2.5 py-2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="mt-0.5 shrink-0 text-mint">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+          <p className="font-mono text-[11px] leading-4 text-fog">
+            Replaces{" "}
+            <span className="font-medium text-ink">{replaced.join(", ")}</span>
+            {remaining > 0 && <span> and {remaining} more</span>}
+          </p>
         </div>
+      )}
 
-        <div className="mt-auto border-t border-border pt-3">
-          <span className="block truncate text-[11px] font-medium text-muted-foreground">
-            {categoryNames.join(" · ")}
-          </span>
-        </div>
+      <div className="mt-auto flex items-end justify-between gap-3 pt-4">
+        <span className="truncate font-mono text-[10.5px] uppercase tracking-wider text-dim">
+          {categoryNames.join(" · ") || "—"}
+        </span>
+        <PricingBadge pricing={product.pricing} />
       </div>
     </Link>
   );

@@ -24,7 +24,7 @@ export function ComparisonTable({
           <tr>
             <th
               scope="col"
-              className="sticky left-0 z-10 border-b border-border bg-background px-3 py-2.5 text-left text-xs font-medium text-muted-foreground"
+              className="sticky left-0 z-10 border-b border-line bg-void px-3 py-2.5 text-left font-mono text-[10.5px] font-medium uppercase tracking-widest text-dim"
             >
               Feature
             </th>
@@ -32,7 +32,7 @@ export function ComparisonTable({
               <th
                 key={product.slug}
                 scope="col"
-                className="border-b border-border px-3 py-2.5 text-center text-xs font-medium text-muted-foreground"
+                className="border-b border-line px-3 py-2.5 text-center font-display text-[13px] font-semibold text-ink"
               >
                 {product.name}
               </th>
@@ -46,7 +46,7 @@ export function ComparisonTable({
                 <th
                   colSpan={products.length + 1}
                   scope="row"
-                  className="border-b border-border bg-muted px-3 py-1.5 text-left text-xs font-medium text-muted-foreground"
+                  className="border-b border-line bg-raised px-3 py-1.5 text-left font-mono text-[10.5px] font-medium uppercase tracking-widest text-dim"
                 >
                   {group}
                 </th>
@@ -56,7 +56,7 @@ export function ComparisonTable({
                 .map((feature) => (
                   <tr key={feature.id}>
                     <td
-                      className="sticky left-0 z-10 border-b border-border/60 bg-background px-3 py-2 font-medium text-foreground"
+                      className="sticky left-0 z-10 border-b border-line/60 bg-pine px-3 py-2 text-[13px] font-medium text-fog"
                       title={feature.description}
                     >
                       {feature.name}
@@ -66,7 +66,7 @@ export function ComparisonTable({
                       return (
                         <td
                           key={product.slug}
-                          className="border-b border-border/60 px-3 py-2 text-center"
+                          className="border-b border-line/60 px-3 py-2 text-center"
                         >
                           <span className="sr-only">
                             {product.name}: {feature.name} —{" "}
@@ -74,13 +74,13 @@ export function ComparisonTable({
                           </span>
                           {has ? (
                             <Check
-                              className="mx-auto h-4 w-4 text-emerald-600 dark:text-emerald-400"
+                              className="mx-auto h-4 w-4 text-mint"
                               strokeWidth={1.75}
                               aria-hidden="true"
                             />
                           ) : (
                             <Minus
-                              className="mx-auto h-4 w-4 text-muted-foreground/40"
+                              className="mx-auto h-4 w-4 text-dim/50"
                               strokeWidth={1.75}
                               aria-hidden="true"
                             />

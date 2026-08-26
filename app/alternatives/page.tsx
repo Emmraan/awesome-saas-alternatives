@@ -49,19 +49,22 @@ export default async function AlternativesPage({
   const hasStars = allProducts.some((product) => product.github?.stars != null);
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+    <div className="mx-auto w-full max-w-7xl px-5 py-14 lg:px-8">
       <Breadcrumbs
         items={[
-          { label: "Home", href: "/" },
-          { label: "Alternatives" },
+          { label: "alternatives", href: "/" },
+          { label: "index" },
         ]}
       />
 
-      <header className="mt-4 max-w-2xl">
-        <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+      <header className="mt-5 max-w-2xl">
+        <p className="font-mono text-[11.5px] font-medium uppercase tracking-[0.22em] text-mint">
+          The full catalog
+        </p>
+        <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
           Alternatives directory
         </h1>
-        <p className="mt-2 text-sm leading-6 text-muted-foreground">
+        <p className="mt-3 text-[15px] leading-relaxed text-fog">
           Every product in the catalog, filterable by pricing, hosting, license
           and setup effort — with the whole grid a click away.
         </p>
@@ -82,7 +85,7 @@ export default async function AlternativesPage({
           />
         ) : (
           <div className="flex flex-col gap-6">
-            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {pageItems.map((product) => (
                 <li key={product.slug} className="flex">
                   <ProductCard
@@ -94,8 +97,8 @@ export default async function AlternativesPage({
               ))}
             </ul>
 
-            <div className="flex flex-col items-center gap-3 border-t border-border pt-6 sm:flex-row sm:justify-between">
-              <p className="text-sm text-muted-foreground" role="status">
+            <div className="flex flex-col items-center gap-3 border-t border-line pt-6 sm:flex-row sm:justify-between">
+              <p className="font-mono text-[12px] text-dim" role="status">
                 Showing {rangeStart}–{rangeEnd} of {total} products
               </p>
               <DirectoryPagination state={state} totalPages={totalPages} />

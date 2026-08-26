@@ -7,17 +7,12 @@ import { useTheme } from "next-themes";
 const emptySubscribe = () => () => {};
 
 function useMounted() {
-  return useSyncExternalStore(
-    emptySubscribe,
-    () => true,
-    () => false,
-  );
+  return useSyncExternalStore(emptySubscribe, () => true, () => false);
 }
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const mounted = useMounted();
-
   const isDark = resolvedTheme === "dark";
 
   return (
@@ -31,7 +26,7 @@ export function ThemeToggle() {
           : "Toggle color theme"
       }
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="ml-1 inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-line bg-pine text-fog transition-colors hover:border-edge hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
     >
       {mounted &&
         (isDark ? (

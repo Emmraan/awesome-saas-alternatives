@@ -33,7 +33,7 @@ export function getPageItems(page: number, totalPages: number): PageItem[] {
 }
 
 const BUTTON_CLASSES =
-  "inline-flex h-8 min-w-8 items-center justify-center rounded-md border border-border bg-card px-2 text-sm text-foreground transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex h-8 min-w-8 items-center justify-center rounded-md border border-line bg-pine px-2 font-mono text-[13px] text-fog transition-colors hover:border-edge hover:bg-moss hover:text-ink disabled:pointer-events-none disabled:opacity-50";
 
 export function Pagination({
   page,
@@ -63,7 +63,7 @@ export function Pagination({
           <span
             key={`ellipsis-${index}`}
             aria-hidden="true"
-            className="px-1 text-sm text-muted-foreground"
+            className="px-1 font-mono text-sm text-dim"
           >
             …
           </span>
@@ -77,7 +77,7 @@ export function Pagination({
             className={cn(
               BUTTON_CLASSES,
               item === page &&
-                "border-transparent bg-primary font-medium text-primary-foreground hover:bg-primary",
+                "border-transparent bg-mint font-medium text-void hover:border-transparent hover:bg-mint hover:text-void",
             )}
           >
             {item}

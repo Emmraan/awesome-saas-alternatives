@@ -15,28 +15,27 @@ export function CategoryCard({
     <Link
       href={`/categories/${category.slug}`}
       className={cn(
-        "group flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-[border-color,box-shadow] hover:border-zinc-300 hover:shadow-card-hover dark:hover:border-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
+        "group relative flex h-full flex-col rounded-lg border border-line bg-pine p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-edge hover:bg-moss hover:shadow-card-hover",
         className,
       )}
     >
-      <div className="flex items-center gap-1.5 border-b border-border bg-muted/20 px-3 py-2">
-        <span className="h-2 w-2 rounded-full bg-border" aria-hidden="true" />
-        <span className="h-2 w-2 rounded-full bg-border" aria-hidden="true" />
-        <span className="h-2 w-2 rounded-full bg-emerald-400/60" aria-hidden="true" />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-5 h-8 w-[3px] origin-top scale-y-0 rounded-r bg-sky transition-transform duration-300 group-hover:scale-y-100"
+      />
+      <div className="flex items-start justify-between gap-3">
+        <h3 className="font-display text-lg font-semibold leading-tight tracking-tight text-ink transition-colors group-hover:text-sky">
+          {category.name}
+        </h3>
         {productCount !== undefined && (
-          <span className="ml-auto rounded-full bg-muted px-2 py-0.5 text-[11px] font-medium tabular-nums text-muted-foreground">
+          <span className="shrink-0 rounded-full border border-line bg-raised px-2 py-0.5 font-mono text-[11px] tabular-nums text-dim">
             {productCount}
           </span>
         )}
       </div>
-      <div className="p-4">
-        <h3 className="text-[15px] font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary">
-          {category.name}
-        </h3>
-        <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-muted-foreground">
-          {category.description}
-        </p>
-      </div>
+      <p className="mt-1.5 line-clamp-2 text-[13px] leading-snug text-fog">
+        {category.description}
+      </p>
     </Link>
   );
 }

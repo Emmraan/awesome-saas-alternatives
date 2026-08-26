@@ -78,20 +78,22 @@ export default async function CategoryPage({
   const hasStars = allProducts.some((product) => product.github?.stars != null);
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+    <div className="mx-auto w-full max-w-7xl px-5 py-14 lg:px-8">
       <Breadcrumbs
         items={[
-          { label: "Home", href: "/" },
-          { label: "Categories", href: "/categories" },
-          { label: category.name },
+          { label: "categories", href: "/categories" },
+          { label: category.slug },
         ]}
       />
 
-      <header className="mt-4 max-w-2xl">
-        <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+      <header className="mt-5 max-w-2xl">
+        <p className="font-mono text-[11.5px] font-medium uppercase tracking-[0.22em] text-mint">
+          Category
+        </p>
+        <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
           {category.name}
         </h1>
-        <p className="mt-2 text-sm leading-6 text-muted-foreground">
+        <p className="mt-3 text-[15px] leading-relaxed text-fog">
           {category.description}
         </p>
       </header>
@@ -100,16 +102,16 @@ export default async function CategoryPage({
         {parent && (
           <Link
             href={`/categories/${parent.slug}`}
-            className="inline-flex items-center gap-1 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground transition-colors hover:border-zinc-300 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring dark:hover:border-zinc-700"
+            className="inline-flex items-center gap-1 rounded-md border border-line bg-raised px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-dim transition-colors hover:border-edge hover:text-mint"
           >
-            {parent.name}
+            ← {parent.name}
           </Link>
         )}
         {children.map((child) => (
           <Link
             key={child.slug}
             href={`/categories/${child.slug}`}
-            className="inline-flex items-center gap-1 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground transition-colors hover:border-zinc-300 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring dark:hover:border-zinc-700"
+            className="inline-flex items-center gap-1 rounded-md border border-line bg-raised px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-dim transition-colors hover:border-edge hover:text-mint"
           >
             {child.name}
           </Link>
@@ -145,7 +147,7 @@ export default async function CategoryPage({
           />
         ) : (
           <div className="flex flex-col gap-6">
-            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {pageItems.map((product) => (
                 <li key={product.slug} className="flex">
                   <ProductCard
@@ -157,8 +159,8 @@ export default async function CategoryPage({
               ))}
             </ul>
 
-            <div className="flex flex-col items-center gap-3 border-t border-border pt-6 sm:flex-row sm:justify-between">
-              <p className="text-sm text-muted-foreground" role="status">
+            <div className="flex flex-col items-center gap-3 border-t border-line pt-6 sm:flex-row sm:justify-between">
+              <p className="font-mono text-[12px] text-dim" role="status">
                 Showing {rangeStart}–{rangeEnd} of {total} products
               </p>
               <DirectoryPagination

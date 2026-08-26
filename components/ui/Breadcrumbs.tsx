@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
 
 export interface BreadcrumbItem {
   label: string;
@@ -9,22 +8,19 @@ export interface BreadcrumbItem {
 export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   return (
     <nav aria-label="Breadcrumb">
-      <ol className="flex flex-wrap items-center gap-1.5 text-sm">
+      <ol className="flex flex-wrap items-center gap-1.5 font-mono text-[12px]">
+        <li className="flex items-center gap-1.5">
+          <span aria-hidden="true" className="text-dim">~</span>
+        </li>
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
           return (
             <li key={`${item.label}-${index}`} className="flex items-center gap-1.5">
-              {index > 0 && (
-                <ChevronRight
-                  className="h-3.5 w-3.5 shrink-0 text-muted-foreground/60"
-                  strokeWidth={1.75}
-                  aria-hidden="true"
-                />
-              )}
+              <span aria-hidden="true" className="text-line">/</span>
               {item.href && !isLast ? (
                 <Link
                   href={item.href}
-                  className="text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                  className="text-dim transition-colors hover:text-mint"
                 >
                   {item.label}
                 </Link>
@@ -32,9 +28,7 @@ export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
                 <span
                   aria-current={isLast ? "page" : undefined}
                   className={
-                    isLast
-                      ? "font-medium text-foreground"
-                      : "text-muted-foreground"
+                    isLast ? "font-medium text-mint" : "text-dim"
                   }
                 >
                   {item.label}
