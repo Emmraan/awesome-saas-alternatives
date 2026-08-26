@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/Emmraan/awesome-saas-alternatives/compare/v1.2.1...v1.3.0) (2026-08-26)
+
+
+### Features
+
+* **ui:** terminal-inspired redesign with light/dark theme ([2c7a20b](https://github.com/Emmraan/awesome-saas-alternatives/commit/2c7a20b67ff9639d80a719fa09ad44b401f1921d))
+
 ## [1.2.1](https://github.com/Emmraan/awesome-saas-alternatives/compare/v1.2.0...v1.2.1) (2026-08-21)
 
 
