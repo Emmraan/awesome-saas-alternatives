@@ -33,7 +33,7 @@ export function getPageItems(page: number, totalPages: number): PageItem[] {
 }
 
 const BUTTON_CLASSES =
-  "inline-flex h-8 min-w-8 items-center justify-center rounded-md border border-line bg-pine px-2 font-mono text-[13px] text-fog transition-colors hover:border-edge hover:bg-moss hover:text-ink disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex h-10 w-10 items-center justify-center rounded-md border border-line bg-pine text-fog transition-colors hover:border-edge hover:text-ink disabled:pointer-events-none disabled:opacity-30";
 
 export function Pagination({
   page,
