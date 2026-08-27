@@ -15,6 +15,8 @@ import {
 } from "../lib/directory";
 
 const DEFAULT_STATE: DirectoryState = {
+  q: "",
+  kind: "all",
   pricing: [],
   difficulty: [],
   selfHosted: false,
@@ -39,6 +41,8 @@ describe("parseDirectoryState", () => {
         page: "3",
       }),
     ).toEqual({
+      q: "",
+      kind: "all",
       pricing: ["free", "paid"],
       difficulty: ["easy"],
       selfHosted: true,
@@ -77,6 +81,8 @@ describe("buildDirectoryUrl", () => {
 
   it("round-trips through parseDirectoryState", () => {
     const state: DirectoryState = {
+      q: "",
+      kind: "all",
       pricing: ["free", "freemium"],
       difficulty: ["easy"],
       selfHosted: true,

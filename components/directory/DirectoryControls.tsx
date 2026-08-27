@@ -80,6 +80,14 @@ export function DirectoryControls({
     ? SORT_OPTIONS
     : SORT_OPTIONS.filter((option) => option.value !== "stars");
 
+  const handleKind = (kind: DirectoryState["kind"]) => {
+    go({ ...state, kind, page: 1 });
+  };
+
+  const handleReset = () => {
+    go({ q: "", kind: "all", pricing: [], difficulty: [], selfHosted: false, openSource: false, sort: "replaces", page: 1 } as DirectoryState);
+  };
+
   return (
     <div className="mt-8 flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-10">
       <aside className="hidden lg:block lg:w-60 lg:shrink-0">
@@ -87,7 +95,39 @@ export function DirectoryControls({
           <h2 className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-dim">
             Filters
           </h2>
+          <div className="rounded-lg border border-line bg-pine p-3 shadow-card">
+            <p className="px-1 font-mono text-[10.5px] font-medium uppercase tracking-widest text-dim">
+              Show
+            </p>
+            <div className="mt-2 grid grid-cols-3 gap-1 rounded-lg border border-line bg-void p-1">
+              {[
+                { value: "all" as const, label: "All" },
+                { value: "alternatives" as const, label: "Alt." },
+                { value: "saas" as const, label: "SaaS" },
+              ].map((opt) => (
+                <button
+                  key={opt.value}
+                  type="button"
+                  onClick={() => handleKind(opt.value)}
+                  aria-pressed={state.kind === opt.value}
+                  className={`rounded-md px-2 py-1.5 font-mono text-[10.5px] uppercase tracking-wide transition-all ${state.kind === opt.value ? "bg-minttint text-mint ring-1 ring-mint/30" : "text-dim hover:text-fog"}`}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
           <FilterPanel groups={groups} selected={selected} onToggle={handleToggle} />
+          {activeCount > 0 && (
+            <button
+              type="button"
+              onClick={handleReset}
+              className="flex w-full items-center justify-center gap-2 rounded-lg border border-coral/35 bg-coraltint/50 px-3 py-2.5 font-mono text-[11.5px] uppercase tracking-wider text-coral transition-colors hover:bg-coraltint"
+            >
+              <X className="h-3 w-3" strokeWidth={2} aria-hidden="true" />
+              Reset {activeCount} filter{activeCount > 1 ? "s" : ""}
+            </button>
+          )}
         </div>
       </aside>
 
@@ -160,7 +200,44 @@ export function DirectoryControls({
                 <X className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
               </button>
             </div>
-            <FilterPanel groups={groups} selected={selected} onToggle={handleToggle} />
+            <div className="rounded-lg border border-line bg-pine p-3 shadow-card">
+              <p className="px-1 font-mono text-[10.5px] font-medium uppercase tracking-widest text-dim">
+                Show
+              </p>
+              <div className="mt-2 grid grid-cols-3 gap-1 rounded-lg border border-line bg-void p-1">
+                {[
+                  { value: "all" as const, label: "All" },
+                  { value: "alternatives" as const, label: "Alt." },
+                  { value: "saas" as const, label: "SaaS" },
+                ].map((opt) => (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => handleKind(opt.value)}
+                    aria-pressed={state.kind === opt.value}
+                    className={`rounded-md px-2 py-1.5 font-mono text-[10.5px] uppercase tracking-wide transition-all ${state.kind === opt.value ? "bg-minttint text-mint ring-1 ring-mint/30" : "text-dim hover:text-fog"}`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="mt-4">
+              <FilterPanel groups={groups} selected={selected} onToggle={handleToggle} />
+            </div>
+            {activeCount > 0 && (
+              <button
+                type="button"
+                onClick={() => {
+                  handleReset();
+                  closeSheet();
+                }}
+                className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg border border-coral/35 bg-coraltint/50 px-3 py-2.5 font-mono text-[11.5px] uppercase tracking-wider text-coral transition-colors hover:bg-coraltint"
+              >
+                <X className="h-3 w-3" strokeWidth={2} aria-hidden="true" />
+                Reset {activeCount} filter{activeCount > 1 ? "s" : ""}
+              </button>
+            )}
             <button
               type="button"
               onClick={closeSheet}

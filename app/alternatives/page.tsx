@@ -14,6 +14,7 @@ import {
 } from "@/lib/directory";
 import { DirectoryControls } from "@/components/directory/DirectoryControls";
 import { DirectoryPagination } from "@/components/directory/DirectoryPagination";
+import { DirectorySearch } from "@/components/directory/DirectorySearch";
 import { Reveal } from "@/components/motion/Reveal";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -58,21 +59,33 @@ export default async function AlternativesPage({
         ]}
       />
 
-      <header className="mt-5 max-w-2xl">
+      <header className="mt-5">
         <Reveal>
-          <p className="font-mono text-[11.5px] font-medium uppercase tracking-[0.22em] text-mint">
-            The full catalog
-          </p>
-          <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
-            Alternatives directory
-          </h1>
-          <p className="mt-3 text-[15px] leading-relaxed text-fog">
-            Every product in the catalog, filterable by pricing, hosting, license
-            and setup effort — with the whole grid a click away.
-          </p>
-        </Reveal>
-        <Reveal delay={80} className="mt-6 flex items-center gap-2 rounded-lg border border-line bg-moss/60 px-4 py-2.5 font-mono text-[11px] uppercase tracking-wider text-dim">
-          <span className="text-mint">$</span> ls ~/alternatives — {total} tools · {filtered.length} matched
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="font-mono text-[11.5px] font-medium uppercase tracking-[0.22em] text-mint">
+                The full catalog
+              </p>
+              <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
+                {state.kind === "alternatives"
+                  ? "Open alternatives"
+                  : state.kind === "saas"
+                    ? "Paid SaaS"
+                    : "Every tool, mapped"}
+              </h1>
+              <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-fog">
+                <span className="font-mono text-[13px] text-mint">{total}</span> of {allProducts.length} products
+                {state.q && (
+                  <>
+                    {" "}
+                    matching <span className="text-ink">“{state.q}”</span>
+                  </>
+                )}
+                . Filter by what you refuse to keep paying for.
+              </p>
+            </div>
+            <DirectorySearch state={state} />
+          </div>
         </Reveal>
       </header>
 

@@ -203,7 +203,7 @@ describe("FilterPanel", () => {
     expect(html).toContain("Pricing");
     expect(html).toContain("Free");
     expect(html).toContain(">42</span>");
-    expect(html).toContain('checked=""');
+    expect(html).toContain('aria-pressed="true"');
   });
 });
 
