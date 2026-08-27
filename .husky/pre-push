@@ -1,1 +1,4 @@
-git pull --rebase --autostash || exit 1
+# Pull before push only if upstream is configured (avoids error for new branches)
+if git rev-parse --abbrev-ref --symbolic-full-name @{u} >/dev/null 2>&1; then
+  git pull --rebase --autostash || exit 1
+fi
