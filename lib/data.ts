@@ -71,6 +71,10 @@ export function getProductsByAlternative(name: string): Product[] {
   );
 }
 
+/**
+ * @deprecated Use `lib/search.ts:searchProducts` for weighted relevance scoring.
+ * Kept for backwards compat with older call sites — simple substring match.
+ */
 export function searchProducts(query: string): Product[] {
   const needle = query.trim().toLowerCase();
   if (!needle) return products;

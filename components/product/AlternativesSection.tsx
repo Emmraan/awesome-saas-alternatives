@@ -1,4 +1,5 @@
 import type { Category, Product } from "@/lib/types";
+import { Reveal } from "@/components/motion/Reveal";
 import { AlternativeCard } from "@/components/ui/AlternativeCard";
 
 export function AlternativesSection({
@@ -32,13 +33,14 @@ export function AlternativesSection({
         </p>
 
         <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {alternatives.map((alternative) => (
-            <AlternativeCard
-              key={alternative.slug}
-              product={alternative}
-              categories={categories}
-              className="h-full"
-            />
+          {alternatives.map((alternative, index) => (
+            <Reveal key={alternative.slug} delay={(index % 3) * 70}>
+              <AlternativeCard
+                product={alternative}
+                categories={categories}
+                className="h-full"
+              />
+            </Reveal>
           ))}
         </div>
       </div>
