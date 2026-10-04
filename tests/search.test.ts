@@ -38,9 +38,17 @@ describe("searchProducts", () => {
     expect(searchProducts("vercel", [], getCategories())).toEqual([]);
   });
 
-  it('ranks "vercel" with the alternatives first, the SaaS itself second', () => {
+  it('ranks "vercel" alternatives before the SaaS itself', () => {
     const results = searchProducts("vercel", getProducts(), getCategories());
-    expect(results.map((p) => p.name).slice(0, 2)).toEqual(["Coolify", "Vercel"]);
+    const names = results.map((p) => p.name);
+    const vercelIndex = names.indexOf("Vercel");
+    expect(vercelIndex).toBeGreaterThan(0);
+    for (const product of getProducts().filter((p) =>
+      p.replaces.some((name) => name.toLowerCase() === "vercel"),
+    )) {
+      expect(names.indexOf(product.name)).toBeGreaterThanOrEqual(0);
+      expect(names.indexOf(product.name)).toBeLessThan(vercelIndex);
+    }
   });
 
   it('returns only self-hosted analytics for "self hosted analytics"', () => {

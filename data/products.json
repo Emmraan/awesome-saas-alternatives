@@ -3799,5 +3799,26 @@
   "createdAt": "2026-08-19T00:00:00.000Z",
   "updatedAt": "2026-08-19T00:00:00.000Z",
   "status": "active"
+  },
+{
+  "slug": "shipvela",
+  "name": "Shipvela",
+  "tagline": "Website hosting from GitHub or a CLI",
+  "description": "Hosts React, Vite and static websites imported from GitHub or published as prebuilt static output with a CLI. The free Hobby plan includes 3 projects, 20 publishes per month, custom domains and managed HTTPS. GitHub updates require selected App access and a successful first publish.",
+  "website": "https://shipvela.com",
+  "repo": null,
+  "license": null,
+  "openSource": false,
+  "selfHosted": false,
+  "pricing": "freemium",
+  "difficulty": "easy",
+  "categories": ["cloud-hosting"],
+  "replaces": ["Vercel", "Netlify"],
+  "features": ["cli", "free-tier"],
+  "tags": ["hosting", "static-sites", "react", "vite", "deployment"],
+  "github": null,
+  "createdAt": "2026-10-04T00:00:00.000Z",
+  "updatedAt": "2026-10-04T00:00:00.000Z",
+  "status": "active"
   }
 ]
