@@ -3799,5 +3799,26 @@
   "createdAt": "2026-08-19T00:00:00.000Z",
   "updatedAt": "2026-08-19T00:00:00.000Z",
   "status": "active"
+  },
+{
+  "slug": "tale",
+  "name": "Tale",
+  "tagline": "Self-hosted project workspace for teams and AI agents",
+  "description": "An MIT-licensed workspace for project tasks, shared knowledge and AI agents. Teams prepare task briefs, explicitly start agents with project context, and review reports and files. It overlaps Linear and Asana for task/project coordination, without claiming feature parity. Community software is free to self-host; infrastructure and model costs are separate, with optional Enterprise operation and support.",
+  "website": "https://tale.dev",
+  "repo": "tale-project/tale",
+  "license": "MIT",
+  "openSource": true,
+  "selfHosted": true,
+  "pricing": "free",
+  "difficulty": "medium",
+  "categories": ["task-management", "knowledge-base"],
+  "replaces": ["Linear", "Asana"],
+  "features": ["self-hosted", "open-source", "docker", "collaboration", "free-tier"],
+  "tags": ["project-management", "ai-agents", "knowledge-management"],
+  "github": null,
+  "createdAt": "2026-10-08T19:32:41.806Z",
+  "updatedAt": "2026-10-08T19:32:41.806Z",
+  "status": "active"
   }
 ]
