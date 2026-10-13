@@ -36,8 +36,10 @@ For larger features, open an issue first and discuss before building.
 
 ## Local setup
 
-Prerequisites: **Node.js 22+** (see `.nvmrc`) and **pnpm** (see `packageManager`
-in `package.json`; corepack is recommended: `corepack enable`).
+Prerequisites: **Node.js 24+** and **pnpm**. Versions come from `package.json`
+(`engines.node` and `packageManager`) — that file is the single source of truth.
+`.nvmrc` mirrors `engines.node` for `nvm`/`fnm` users (corepack is recommended:
+`corepack enable`).
 
 ```sh
 pnpm install        # install dependencies

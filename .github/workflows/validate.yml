@@ -58,7 +58,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v7
         with:
-          node-version-file: .nvmrc
+          node-version-file: package.json # single source of truth: engines.node — do not point at .nvmrc
           cache: pnpm
 
       - name: Install dependencies

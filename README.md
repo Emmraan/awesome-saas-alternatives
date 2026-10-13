@@ -65,15 +65,19 @@ The whole catalog lives in `data/products.json` (181 entries), validated by Zod 
 | Testing | Vitest 4 + `@vitest/coverage-v8` | 143 tests, `lib/` coverage ≥ 80% |
 | Linting | ESLint 9 + `eslint-config-next` | `lint-staged` on staged `*.{ts,tsx}` |
 | Release | `semantic-release` + changelog/git/github plugins | Runs on push to `main`, npm publish off |
-| Package manager | pnpm 11.22 | `packageManager` field + `pnpm-workspace.yaml` |
-| Runtime | Node 22 (`≥22.14`, see `.nvmrc`) | Vercel + local |
+| Package manager | pnpm 11.22 | `packageManager` field (single source of truth) + `pnpm-workspace.yaml` |
+| Runtime | Node 24 (`≥24.21`, see `engines` in `package.json`) | Vercel + local |
 
 ## Quick start
 
 ### Prerequisites
 
-- **Node.js 22+** — use the version pinned in `.nvmrc` (e.g. `nvm use` or `fnm use`).
+- **Node.js 24+** — exact version in `.nvmrc` (e.g. `nvm use` or `fnm use`).
 - **pnpm 11.22+** — `corepack enable` is recommended.
+
+> Single source of truth: `package.json` (`engines.node` for Node, `packageManager`
+> for pnpm). CI reads versions from there; `.nvmrc` mirrors `engines.node` for
+> local version managers and is enforced by `tests/toolchain.test.ts`.
 
 ### Install and run
 
