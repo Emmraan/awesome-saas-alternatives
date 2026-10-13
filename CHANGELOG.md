@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/Emmraan/awesome-saas-alternatives/compare/v1.3.0...v1.4.0) (2026-10-13)
+
+
+### Features
+
+* **policy:** require alternatives to be open-source, self-hosted, or free ([6817c61](https://github.com/Emmraan/awesome-saas-alternatives/commit/6817c6133bcb934c2b96f3469596e6198449cd90))
+
 # [1.3.0](https://github.com/Emmraan/awesome-saas-alternatives/compare/v1.2.1...v1.3.0) (2026-08-26)
 
 
