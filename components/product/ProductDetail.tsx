@@ -5,6 +5,7 @@ import {
   buildSoftwareApplicationJsonLd,
 } from "@/lib/product-detail";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { Reveal } from "@/components/motion/Reveal";
 import { ProductDetailHeader } from "./ProductDetailHeader";
 import { ReplacesSection } from "./ReplacesSection";
 import { AlternativesSection } from "./AlternativesSection";
@@ -37,26 +38,36 @@ export function ProductDetail({
         ]}
       />
 
-      <div className="mt-6">
-        <ProductDetailHeader product={product} categories={categories} />
-      </div>
+      <Reveal>
+        <div className="mt-6">
+          <ProductDetailHeader product={product} categories={categories} />
+        </div>
+      </Reveal>
 
       <div className="mt-6 grid gap-6">
-        <ReplacesSection
-          product={product}
-          replacedProducts={replacedProducts}
-        />
-        <AlternativesSection
-          product={product}
-          alternatives={alternatives}
-          categories={categories}
-        />
-        <ComparisonSection
-          product={product}
-          comparisonProducts={comparisonProducts}
-          features={features}
-        />
-        <WhyChooseSection product={product} facts={facts} />
+        <Reveal delay={80}>
+          <ReplacesSection
+            product={product}
+            replacedProducts={replacedProducts}
+          />
+        </Reveal>
+        <Reveal delay={120}>
+          <AlternativesSection
+            product={product}
+            alternatives={alternatives}
+            categories={categories}
+          />
+        </Reveal>
+        <Reveal delay={160}>
+          <ComparisonSection
+            product={product}
+            comparisonProducts={comparisonProducts}
+            features={features}
+          />
+        </Reveal>
+        <Reveal delay={200}>
+          <WhyChooseSection product={product} facts={facts} />
+        </Reveal>
       </div>
 
       <script

@@ -3,10 +3,13 @@ import type { Difficulty, PricingModel, Product } from "./types";
 export const PAGE_SIZE = 24;
 
 export type SortKey = "replaces" | "name-asc" | "name-desc" | "newest" | "stars";
+export type Kind = "all" | "alternatives" | "saas";
 
 export type FilterGroupId = "pricing" | "difficulty" | "hosting" | "license";
 
 export interface DirectoryState {
+  q: string;
+  kind: Kind;
   pricing: PricingModel[];
   difficulty: Difficulty[];
   selfHosted: boolean;
@@ -37,6 +40,7 @@ export const SORT_OPTIONS: { value: SortKey; label: string }[] = [
 
 const PRICING_VALUES: PricingModel[] = ["free", "freemium", "paid"];
 const DIFFICULTY_VALUES: Difficulty[] = ["easy", "medium", "hard"];
+const KIND_VALUES: Kind[] = ["all", "alternatives", "saas"];
 const SORT_VALUES: SortKey[] = SORT_OPTIONS.map((o) => o.value);
 
 type SearchParams = Record<string, string | string[] | undefined>;
@@ -54,6 +58,9 @@ function csv(value: string): string[] {
 }
 
 export function parseDirectoryState(params: SearchParams): DirectoryState {
+  const q = firstValue(params, "q").trim().slice(0, 100);
+  const rawKind = firstValue(params, "kind") as Kind;
+  const kind: Kind = KIND_VALUES.includes(rawKind) ? rawKind : "all";
   const pricing = csv(firstValue(params, "pricing")).filter((v): v is PricingModel =>
     PRICING_VALUES.includes(v as PricingModel),
   );
@@ -66,6 +73,8 @@ export function parseDirectoryState(params: SearchParams): DirectoryState {
   const requestedPage = Number.parseInt(firstValue(params, "page"), 10);
 
   return {
+    q,
+    kind,
     pricing,
     difficulty,
     selfHosted: firstValue(params, "selfhosted") === "true",
@@ -80,6 +89,8 @@ export function buildDirectoryUrl(
   basePath = "/alternatives",
 ): string {
   const params = new URLSearchParams();
+  if (state.q) params.set("q", state.q);
+  if (state.kind !== "all") params.set("kind", state.kind);
   if (state.pricing.length > 0) params.set("pricing", state.pricing.join(","));
   if (state.difficulty.length > 0)
     params.set("difficulty", state.difficulty.join(","));
@@ -96,14 +107,30 @@ export function filterProducts(
   products: Product[],
   state: DirectoryState,
 ): Product[] {
-  const { pricing, difficulty, selfHosted, openSource } = state;
-  return products.filter(
-    (product) =>
-      (pricing.length === 0 || pricing.includes(product.pricing)) &&
-      (difficulty.length === 0 || difficulty.includes(product.difficulty)) &&
-      (!selfHosted || product.selfHosted) &&
-      (!openSource || product.openSource),
-  );
+  const { q, kind, pricing, difficulty, selfHosted, openSource } = state;
+  const needle = q.trim().toLowerCase();
+  return products.filter((product) => {
+    if (pricing.length > 0 && !pricing.includes(product.pricing)) return false;
+    if (difficulty.length > 0 && !difficulty.includes(product.difficulty)) return false;
+    if (selfHosted && !product.selfHosted) return false;
+    if (openSource && !product.openSource) return false;
+    if (kind === "alternatives" && product.replaces.length === 0) return false;
+    if (kind === "saas" && product.replaces.length > 0) return false;
+    if (needle) {
+      const haystack = [
+        product.name,
+        product.tagline,
+        product.description,
+        ...product.tags,
+        ...product.replaces,
+        ...product.categories,
+      ]
+        .join(" ")
+        .toLowerCase();
+      if (!haystack.includes(needle)) return false;
+    }
+    return true;
+  });
 }
 
 export function sortProducts(products: Product[], sort: SortKey): Product[] {
@@ -198,22 +225,40 @@ function countOption(
   groupId: FilterGroupId,
   matches: (product: Product) => boolean,
 ): number {
-  return products.filter(
-    (product) =>
-      (groupId === "pricing" ||
-        state.pricing.length === 0 ||
-        state.pricing.includes(product.pricing)) &&
-      (groupId === "difficulty" ||
-        state.difficulty.length === 0 ||
-        state.difficulty.includes(product.difficulty)) &&
-      (groupId === "hosting" || !state.selfHosted || product.selfHosted) &&
-      (groupId === "license" || !state.openSource || product.openSource) &&
-      matches(product),
-  ).length;
+  const needle = state.q.trim().toLowerCase();
+  return products.filter((product) => {
+    if (groupId !== "pricing" && state.pricing.length > 0 && !state.pricing.includes(product.pricing))
+      return false;
+    if (
+      groupId !== "difficulty" &&
+      state.difficulty.length > 0 &&
+      !state.difficulty.includes(product.difficulty)
+    )
+      return false;
+    if (groupId !== "hosting" && state.selfHosted && !product.selfHosted) return false;
+    if (groupId !== "license" && state.openSource && !product.openSource) return false;
+    if (state.kind === "alternatives" && product.replaces.length === 0) return false;
+    if (state.kind === "saas" && product.replaces.length > 0) return false;
+    if (needle) {
+      const haystack = [
+        product.name,
+        product.tagline,
+        ...product.tags,
+        ...product.replaces,
+        ...product.categories,
+      ]
+        .join(" ")
+        .toLowerCase();
+      if (!haystack.includes(needle)) return false;
+    }
+    return matches(product);
+  }).length;
 }
 
 export function countActiveFilters(state: DirectoryState): number {
   return (
+    (state.q ? 1 : 0) +
+    (state.kind !== "all" ? 1 : 0) +
     state.pricing.length +
     state.difficulty.length +
     (state.selfHosted ? 1 : 0) +

@@ -2,12 +2,33 @@
 
 import { useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Search, SearchX } from "lucide-react";
+import Link from "next/link";
+import { Search, SearchX, Star } from "lucide-react";
 import type { Category, Product } from "@/lib/types";
-import { searchProducts } from "@/lib/search";
+import { searchProducts, tokenize } from "@/lib/search";
+import { Reveal } from "@/components/motion/Reveal";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { ProductCard } from "@/components/ui/ProductCard";
+import { PricingBadge } from "@/components/ui/PricingBadge";
 import { SearchBar } from "@/components/ui/SearchBar";
+import { formatCompact } from "@/lib/format";
+
+function Highlight({ text, query }: { text: string; query: string }) {
+  const tokens = tokenize(query);
+  if (tokens.length === 0) return <>{text}</>;
+  const pattern = new RegExp(`(${tokens.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`, "gi");
+  const parts = text.split(pattern);
+  return (
+    <>
+      {parts.map((part, index) =>
+        tokens.some((t) => t.toLowerCase() === part.toLowerCase()) ? (
+          <mark key={index}>{part}</mark>
+        ) : (
+          <span key={index}>{part}</span>
+        ),
+      )}
+    </>
+  );
+}
 
 export function SearchResults({
   products,
@@ -45,49 +66,122 @@ export function SearchResults({
 
   return (
     <div className="mt-8">
-      <SearchBar
-        value={input}
-        autoFocus
-        placeholder="Search tools, categories, alternatives…"
-        onChange={updateQuery}
-        onSubmit={() => {
-          resultsRef.current?.focus({ preventScroll: true });
-        }}
-      />
+      <Reveal>
+        <SearchBar
+          value={input}
+          autoFocus
+          placeholder="Search tools, categories, alternatives…"
+          onChange={updateQuery}
+          onSubmit={() => {
+            resultsRef.current?.focus({ preventScroll: true });
+          }}
+        />
+      </Reveal>
 
       {query.trim() === "" ? (
-        <div className="mt-10">
-          <EmptyState
-            title="Search the directory"
-            description="Try a tool like “vercel”, a need like “self hosted analytics”, or “zapier alternative” to see what can replace it."
-            icon={Search}
-          />
-        </div>
+        <>
+          <Reveal delay={80} className="mt-10">
+            <EmptyState
+              title="Search the directory"
+              description="Try a tool like “vercel”, a need like “self hosted analytics”, or “zapier alternative” to see what can replace it."
+              icon={Search}
+            />
+          </Reveal>
+          <Reveal delay={120} className="mt-12">
+            <h2 className="font-display text-xl font-bold tracking-tight text-ink">Heaviest hitters while you think</h2>
+            <p className="mt-2 text-[13px] leading-relaxed text-fog">
+              These replace the most paid SaaS — a good place to start browsing.
+            </p>
+            <ul className="mt-5 divide-y divide-line/70 overflow-hidden rounded-xl border border-line bg-pine/50">
+              {[...products]
+                .filter((p) => p.replaces.length > 0)
+                .sort((a, b) => b.replaces.length - a.replaces.length || (b.github?.stars ?? 0) - (a.github?.stars ?? 0))
+                .slice(0, 6)
+                .map((product, index) => (
+                  <li key={product.slug}>
+                    <Link
+                      href={`/alternatives/${product.slug}`}
+                      className="group flex items-center gap-5 px-5 py-4 transition-colors hover:bg-moss sm:px-6"
+                    >
+                      <span className="hidden w-8 shrink-0 text-right font-display text-[1.2rem] font-bold text-dim group-hover:text-mint sm:block">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="font-display text-[1.1rem] font-semibold text-ink transition-colors group-hover:text-mint">
+                          {product.name}
+                        </span>
+                        <span className="ml-2 hidden sm:inline-flex">
+                          <PricingBadge pricing={product.pricing} />
+                        </span>
+                        <span className="mt-1 block truncate text-[13px] text-fog">
+                          {product.tagline}
+                        </span>
+                      </span>
+                      <span className="flex shrink-0 items-center gap-1.5 font-mono text-[11px] text-mint">
+                        replaces {product.replaces.length}
+                      </span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="hidden shrink-0 text-dim transition-transform group-hover:translate-x-1 group-hover:text-mint sm:block">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                      </svg>
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          </Reveal>
+        </>
       ) : results.length === 0 ? (
-        <div className="mt-10">
+        <Reveal delay={80} className="mt-10">
           <EmptyState
             title={`No results for “${query.trim()}”`}
             description="Nothing in the catalog matches that yet — try a tool name, a category or the SaaS you want to replace."
             action={{ label: "Browse all alternatives", href: "/alternatives" }}
             icon={SearchX}
           />
-        </div>
+        </Reveal>
       ) : (
         <div ref={resultsRef} tabIndex={-1} className="mt-10 focus-visible:outline-none">
-          <p className="font-mono text-[12px] text-dim" role="status">
-            {results.length} result{results.length === 1 ? "" : "s"} for “
-            {query.trim()}”
-          </p>
-          <ul className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {results.map((product) => (
-              <li key={product.slug} className="flex">
-                <ProductCard
-                  product={product}
-                  categories={categories}
-                  className="h-full w-full"
-                />
-              </li>
-            ))}
+          <Reveal className="flex items-center gap-2 rounded-lg border border-line bg-moss/60 px-4 py-2.5 font-mono text-[11px] uppercase tracking-wider text-dim" role="status">
+            <span className="text-mint">≡</span> {results.length} match{results.length === 1 ? "" : "es"} — ranked by relevance · for “{query.trim()}”
+          </Reveal>
+          <ul className="mt-5 divide-y divide-line/70 overflow-hidden rounded-xl border border-line bg-pine/50">
+            {results.map((product, index) => {
+              const isAlt = product.replaces.length > 0;
+              return (
+                <Reveal key={product.slug} as="li" delay={(index % 6) * 30}>
+                  <Link
+                    href={`/alternatives/${product.slug}`}
+                    className="group flex items-center gap-5 px-5 py-4 transition-colors hover:bg-moss sm:px-6"
+                  >
+                    <span className="hidden w-8 shrink-0 text-right font-mono text-[11px] text-dim sm:block">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="flex flex-wrap items-center gap-2">
+                        <span className="font-display text-[1.15rem] font-semibold text-ink transition-colors group-hover:text-mint">
+                          <Highlight text={product.name} query={query} />
+                        </span>
+                        <PricingBadge pricing={product.pricing} />
+                      </span>
+                      <span className="mt-1 block truncate text-[13px] text-fog">
+                        <Highlight text={product.tagline} query={query} />
+                      </span>
+                    </span>
+                    {product.github?.stars != null && (
+                      <span className="hidden shrink-0 items-center gap-1 font-mono text-[11px] text-dim md:flex">
+                        <Star className="h-3 w-3" strokeWidth={1.75} aria-hidden="true" />
+                        {formatCompact(product.github.stars)}
+                      </span>
+                    )}
+                    <span className={`flex shrink-0 items-center gap-1.5 font-mono text-[11px] ${isAlt ? "text-mint" : "text-dim"}`}>
+                      {isAlt ? `replaces ${product.replaces.length}` : "no match yet"}
+                    </span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="hidden shrink-0 text-dim transition-transform group-hover:translate-x-1 group-hover:text-mint sm:block">
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </Link>
+                </Reveal>
+              );
+            })}
           </ul>
         </div>
       )}

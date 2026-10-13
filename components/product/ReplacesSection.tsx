@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Product } from "@/lib/types";
+import { Reveal } from "@/components/motion/Reveal";
 import { ProductLogo } from "@/components/ui/ProductLogo";
 
 export function ReplacesSection({
@@ -27,8 +28,8 @@ export function ReplacesSection({
         </p>
 
         <ul className="mt-6 flex flex-wrap gap-2">
-          {replacedProducts.map((replaced) => (
-            <li key={replaced.slug}>
+          {replacedProducts.map((replaced, index) => (
+            <Reveal key={replaced.slug} as="li" delay={(index % 4) * 50}>
               <Link
                 href={`/alternatives/${replaced.slug}`}
                 className="group inline-flex items-center gap-2.5 rounded-md border border-line bg-void/60 py-1.5 pl-1.5 pr-3 transition-colors hover:border-coral/40 hover:bg-coraltint/40"
@@ -41,7 +42,7 @@ export function ReplacesSection({
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
               </Link>
-            </li>
+            </Reveal>
           ))}
         </ul>
       </div>

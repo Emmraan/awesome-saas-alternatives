@@ -14,6 +14,8 @@ import {
 } from "@/lib/directory";
 import { DirectoryControls } from "@/components/directory/DirectoryControls";
 import { DirectoryPagination } from "@/components/directory/DirectoryPagination";
+import { DirectorySearch } from "@/components/directory/DirectorySearch";
+import { Reveal } from "@/components/motion/Reveal";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ProductCard } from "@/components/ui/ProductCard";
@@ -57,17 +59,34 @@ export default async function AlternativesPage({
         ]}
       />
 
-      <header className="mt-5 max-w-2xl">
-        <p className="font-mono text-[11.5px] font-medium uppercase tracking-[0.22em] text-mint">
-          The full catalog
-        </p>
-        <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
-          Alternatives directory
-        </h1>
-        <p className="mt-3 text-[15px] leading-relaxed text-fog">
-          Every product in the catalog, filterable by pricing, hosting, license
-          and setup effort — with the whole grid a click away.
-        </p>
+      <header className="mt-5">
+        <Reveal>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="font-mono text-[11.5px] font-medium uppercase tracking-[0.22em] text-mint">
+                The full catalog
+              </p>
+              <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
+                {state.kind === "alternatives"
+                  ? "Open alternatives"
+                  : state.kind === "saas"
+                    ? "Paid SaaS"
+                    : "Every tool, mapped"}
+              </h1>
+              <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-fog">
+                <span className="font-mono text-[13px] text-mint">{total}</span> of {allProducts.length} products
+                {state.q && (
+                  <>
+                    {" "}
+                    matching <span className="text-ink">“{state.q}”</span>
+                  </>
+                )}
+                . Filter by what you refuse to keep paying for.
+              </p>
+            </div>
+            <DirectorySearch state={state} />
+          </div>
+        </Reveal>
       </header>
 
       <DirectoryControls
@@ -78,31 +97,33 @@ export default async function AlternativesPage({
         showStarsSort={hasStars}
       >
         {pageItems.length === 0 ? (
-          <EmptyState
-            title="No products match those filters"
-            description="Try removing a filter or two — the full catalog is one click away."
-            action={{ label: "Clear all filters", href: buildDirectoryUrl({ ...state, pricing: [], difficulty: [], selfHosted: false, openSource: false, page: 1 }) }}
-          />
+          <Reveal>
+            <EmptyState
+              title="No products match those filters"
+              description="Try removing a filter or two — the full catalog is one click away."
+              action={{ label: "Clear all filters", href: buildDirectoryUrl({ ...state, pricing: [], difficulty: [], selfHosted: false, openSource: false, page: 1 }) }}
+            />
+          </Reveal>
         ) : (
           <div className="flex flex-col gap-6">
             <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {pageItems.map((product) => (
-                <li key={product.slug} className="flex">
+              {pageItems.map((product, index) => (
+                <Reveal key={product.slug} as="li" delay={(index % 6) * 50} className="flex">
                   <ProductCard
                     product={product}
                     categories={categories}
                     className="h-full w-full"
                   />
-                </li>
+                </Reveal>
               ))}
             </ul>
 
-            <div className="flex flex-col items-center gap-3 border-t border-line pt-6 sm:flex-row sm:justify-between">
+            <Reveal delay={120} className="flex flex-col items-center gap-3 border-t border-line pt-6 sm:flex-row sm:justify-between">
               <p className="font-mono text-[12px] text-dim" role="status">
                 Showing {rangeStart}–{rangeEnd} of {total} products
               </p>
               <DirectoryPagination state={state} totalPages={totalPages} />
-            </div>
+            </Reveal>
           </div>
         )}
       </DirectoryControls>
