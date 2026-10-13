@@ -140,6 +140,14 @@ Rules:
 - Set `github` to `null` in your PR. **Do not invent GitHub stats** — the
   `sync:github` script fetches real stars/forks/license/release data from the
   GitHub API and fills this in.
+- Alternative eligibility: an entry with a non-empty `replaces` list must be
+  `openSource: true` OR `selfHosted: true` OR `pricing: "free"`. Closed-source
+  `freemium`/`paid` products are not accepted as alternatives (they belong, if
+  at all, as standalone SaaS entries with `replaces: []`). Enforced by
+  `pnpm validate-data`.
+- Self-promotion: if you are affiliated with the product (founder, employee,
+  paid promoter), disclose it in the PR description. Undisclosed promotion is
+  rejected. Disclosed entries are still subject to the eligibility rule above.
 
 ### Refreshing GitHub metadata
 

@@ -113,6 +113,17 @@ describe("product loaders", () => {
     expect(forZendesk.map((p) => p.slug).sort()).toEqual(["freescout", "zammad"]);
   });
 
+  it("only lists eligible alternatives (open-source, self-hosted, or free)", () => {
+    const ineligible = getProducts().filter(
+      (p) =>
+        p.replaces.length > 0 &&
+        !p.openSource &&
+        !p.selfHosted &&
+        p.pricing !== "free",
+    );
+    expect(ineligible.map((p) => p.slug)).toEqual([]);
+  });
+
   it("searchProducts matches name, replaces and tags case-insensitively", () => {
     expect(searchProducts("vercel").length).toBeGreaterThan(0);
     expect(searchProducts("sentry").length).toBeGreaterThan(0);

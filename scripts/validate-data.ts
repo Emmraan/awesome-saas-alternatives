@@ -128,6 +128,17 @@ function validateProducts(
         );
       }
     }
+    if (
+      product.replaces.length > 0 &&
+      !product.openSource &&
+      !product.selfHosted &&
+      product.pricing !== "free"
+    ) {
+      result.ok = false;
+      result.errors.push(
+        `products.json: "${product.slug}" lists replaces but is not open-source, self-hosted, or free (see CONTRIBUTING.md)`,
+      );
+    }
   }
   return result;
 }
