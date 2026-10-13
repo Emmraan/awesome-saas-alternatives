@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/Emmraan/awesome-saas-alternatives/compare/v1.4.0...v1.5.0) (2026-10-13)
+
+
+### Features
+
+* **ui:** terminal polish for non-home pages with full parity ([9d3a626](https://github.com/Emmraan/awesome-saas-alternatives/commit/9d3a626f037aecf3b2828d99976776174cdf842d))
+
 # [1.4.0](https://github.com/Emmraan/awesome-saas-alternatives/compare/v1.3.0...v1.4.0) (2026-10-13)
 
 
