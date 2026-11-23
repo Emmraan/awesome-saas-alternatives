@@ -3799,5 +3799,26 @@
   "createdAt": "2026-08-19T00:00:00.000Z",
   "updatedAt": "2026-08-19T00:00:00.000Z",
   "status": "active"
+  },
+{
+  "slug": "sitewatcher",
+  "name": "SiteWatcher",
+  "tagline": "Self-hosted website uptime and expiry monitoring",
+  "description": "Monitor website uptime, response time, TLS certificates and domain registration expiry, and publish status pages for selected sites.",
+  "website": "https://monitoring.kurkov.dev/demo",
+  "repo": "NikKurkov/sitewatcher",
+  "license": "MIT",
+  "openSource": true,
+  "selfHosted": true,
+  "pricing": "free",
+  "difficulty": "medium",
+  "categories": ["uptime"],
+  "replaces": ["UptimeRobot", "Pingdom"],
+  "features": ["open-source", "self-hosted", "docker", "dark-mode", "cli"],
+  "tags": ["uptime", "monitoring", "status", "tls"],
+  "github": null,
+  "createdAt": "2026-11-23T00:00:00.000Z",
+  "updatedAt": "2026-11-23T00:00:00.000Z",
+  "status": "active"
   }
 ]
